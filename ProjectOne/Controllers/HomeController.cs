@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectOne.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProjectOne.Controllers
 {
@@ -19,6 +15,33 @@ namespace ProjectOne.Controllers
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult RegisterForm()
+        {
+            return View(new RegisterModel());
+        }
+
+        [HttpPost]
+        public IActionResult RegisterForm(Models.RegisterModel registerModelResponse)
+        {
+            return View(registerModelResponse);
+        }
+
+        public IActionResult LogIn()
+        {
+            return View();
+        }
+
+        public IActionResult EnrollInClass()
         {
             return View();
         }
