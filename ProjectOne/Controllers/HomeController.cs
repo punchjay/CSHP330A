@@ -33,7 +33,14 @@ namespace ProjectOne.Controllers
         [HttpPost]
         public IActionResult RegisterForm(Models.RegisterModel registerModelResponse)
         {
-            return View(registerModelResponse);
+            if (ModelState.IsValid)
+            {
+                return View("EnrollInClass");
+            }
+            else
+            {
+                return View("Register", registerModelResponse);
+            }
         }
 
         public IActionResult LogIn()
