@@ -41,6 +41,16 @@ namespace ProjectOne.Controllers
             return View();
         }
 
+        public IActionResult ClassList()
+        {
+            return View();
+        }
+
+        public IActionResult StudentClasses()
+        {
+            return View();
+        }
+
         public IActionResult EnrollInClass()
         {
             return View();
