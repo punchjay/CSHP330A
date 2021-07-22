@@ -24,11 +24,11 @@ namespace ProjectOne.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult RegisterForm()
-        {
-            return View(new RegisterModel());
-        }
+        //[HttpGet]
+        //public IActionResult RegisterForm()
+        //{
+        //    return View(new RegisterModel());
+        //}
 
         [HttpPost]
         public IActionResult RegisterForm(Models.RegisterModel registerModelResponse)
@@ -42,11 +42,6 @@ namespace ProjectOne.Controllers
         }
 
         public IActionResult EnrollInClass()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }
