@@ -1,18 +1,33 @@
 ﻿@model IEnumerable<ProjectOne.Db.Class>
 @{
-    ViewData["Title"] = "Class List";
+    ViewData["Title"] = "Classes";
 }
 
 <div class="text-left">
-    <h4>@ViewData["Title"]</h4>
+    <h3>@ViewData["Title"]</h3>
     <div class="row">
-        <div class="col-md-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
             @foreach (var c in Model)
             {
-                @Html.Raw(string.Format("{0} - {1} - {2}<br />",
-                    c.ClassId, c.ClassName, c.ClassPrice))
+                var className = c.ClassName;
+                var classDescription = c.ClassDescription;
+                var classPrice = c.ClassPrice.ToString("C");
+                <tbody>
+                    <tr>
+                        <td>@className</td>
+                        <td>@classDescription</td>
+                        <td>@classPrice</td>
+                    </tr>
+                </tbody>
             }
-        </div>
+        </table>
     </div>
 </div>
 
