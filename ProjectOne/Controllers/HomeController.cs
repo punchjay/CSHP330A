@@ -49,6 +49,7 @@ namespace ProjectOne.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult ClassList()
         {
             var context = new Db.minicstructorContext();
