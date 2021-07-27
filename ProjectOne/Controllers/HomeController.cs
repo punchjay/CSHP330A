@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ProjectOne.Models;
 using System.Diagnostics;
-using Microsoft.EntityFrameworkCore;
 
 namespace ProjectOne.Controllers
 {

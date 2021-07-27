@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ProjectOne.Db
+﻿namespace ProjectOne.Db
 {
     public partial class UserClass
     {
