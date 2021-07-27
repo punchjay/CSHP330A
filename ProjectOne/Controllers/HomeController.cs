@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using ProjectOne.Models;
 using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProjectOne.Controllers
 {
@@ -50,7 +51,13 @@ namespace ProjectOne.Controllers
 
         public IActionResult ClassList()
         {
-            return View();
+            var context = new Db.minicstructorContext();
+
+            var classes = context.Class
+                        .Include(t => t.UserClass)
+                        .ThenInclude(t => t.User);
+
+            return View(classes);
         }
 
         public IActionResult StudentClasses()

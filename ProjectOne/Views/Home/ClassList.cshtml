@@ -1,4 +1,4 @@
-﻿@model ProjectOne.Models.ClassListModel
+﻿@model IEnumerable<ProjectOne.Db.Class>
 @{
     ViewData["Title"] = "Class List";
 }
@@ -7,6 +7,11 @@
     <h4>@ViewData["Title"]</h4>
     <div class="row">
         <div class="col-md-4">
+            @foreach (var c in Model)
+            {
+                @Html.Raw(string.Format("{0} - {1} - {2}<br />",
+                    c.ClassId, c.ClassName, c.ClassPrice))
+            }
         </div>
     </div>
 </div>
