@@ -3,6 +3,10 @@
     ViewData["Title"] = "Classes";
 }
 
+@if (Model == null)
+{
+    <h4>Loading...</h4>
+}
 @if (Model.Any())
 {
     <div class="text-left">
@@ -33,7 +37,7 @@
 }
 else
 {
-<h4>No @ViewData["Title"] found.</h4>
+    <h4>No @ViewData["Title"] found.</h4>
 }
 
 
