@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ProjectOne.Models;
 using System.Diagnostics;
@@ -52,12 +51,6 @@ namespace ProjectOne.Controllers
         [HttpGet]
         public IActionResult ClassList()
         {
-            //var context = new Db.minicstructorContext();
-
-            //var classes = context.Class
-            //            .Include(t => t.UserClass)
-            //            .ThenInclude(t => t.User);
-
             var classListRepo = new ClassListRepository();
             var classList = classListRepo.ClassList;
 
