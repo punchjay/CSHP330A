@@ -52,13 +52,16 @@ namespace ProjectOne.Controllers
         [HttpGet]
         public IActionResult ClassList()
         {
-            var context = new Db.minicstructorContext();
+            //var context = new Db.minicstructorContext();
 
-            var classes = context.Class
-                        .Include(t => t.UserClass)
-                        .ThenInclude(t => t.User);
+            //var classes = context.Class
+            //            .Include(t => t.UserClass)
+            //            .ThenInclude(t => t.User);
 
-            return View(classes);
+            var classListRepo = new ClassListRepository();
+            var classList = classListRepo.ClassList;
+
+            return View(classList);
         }
 
         public IActionResult StudentClasses()
