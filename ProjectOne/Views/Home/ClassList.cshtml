@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjectOne.Models.ClassListModel>
+﻿@model ProjectOne.Models.ClassListModel[]
 @{
     ViewData["Title"] = "Classes";
 }
@@ -7,7 +7,7 @@
 {
     <h4>Loading...</h4>
 }
-@if (Model.Any())
+@if (Model.Length > 0)
 {
     <div class="text-left">
         <h4>@ViewData["Title"]</h4>
