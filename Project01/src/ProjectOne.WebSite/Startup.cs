@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProjectOne.Business;
+using ProjectOne.Repository;
 using ProjectOne.WebSite.Data;
 using System;
 using System.Collections.Generic;
@@ -27,6 +30,24 @@ namespace ProjectOne.WebSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddSingleton<ICategoryManager, CategoryManager>();
+            //services.AddSingleton<ICategoryRepository, CategoryRepository>();
+
+            //services.AddSingleton<IProductManager, ProductManager>();
+            //services.AddSingleton<IProductRepository, ProductRepository>();
+
+            services.AddSingleton<IUserManager, UserManager>();
+            services.AddSingleton<IUserRepository, UserRepository>();
+
+            services.AddSession();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+       .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+       {
+           options.LoginPath = new PathString("/Home/Login");
+           options.AccessDeniedPath = new PathString("/Account/Denied");
+       });
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -60,7 +81,7 @@ namespace ProjectOne.WebSite
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession(); // before UseMvc
             app.UseAuthentication();
 
             app.UseMvc(routes =>
