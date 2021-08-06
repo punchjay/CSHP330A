@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ProjectOne.Database;
+﻿using ProjectOne.Database;
 
 namespace ProjectOne.Repository
 {

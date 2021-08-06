@@ -1,5 +1,3 @@
-using System;
-
 namespace ProjectOne.WebSite.Models
 {
     public class ErrorViewModel
