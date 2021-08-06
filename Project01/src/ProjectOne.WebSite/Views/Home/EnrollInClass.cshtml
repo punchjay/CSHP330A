@@ -1,0 +1,20 @@
+﻿@model ProjectOne.Models.ClassListModel[]
+@{
+    ViewData["Title"] = "Enroll In Class";
+}
+
+<div class="text-left">
+    <h4>@ViewData["Title"]</h4>
+    <div class="col-md-4">
+        <div class="col-md-4 padding-left-none">
+            <form asp-action="EnrollInClassForm">
+                @*<div class="form-group">
+                    @Html.DropDownListFor(t => t.ClassName, Model, "Choose an option")
+                </div>*@
+                <div class="form-group">
+                    <input type="submit" value="Add a Class" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
