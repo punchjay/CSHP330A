@@ -24,11 +24,11 @@ namespace ProjectOne.Controllers
             return View();
         }
 
-        //[HttpGet]
-        //public IActionResult RegisterForm()
-        //{
-        //    return View(new RegisterModel());
-        //}
+        [HttpGet]
+        public IActionResult RegisterForm()
+        {
+            return View(new RegisterModel());
+        }
 
         [HttpPost]
         public IActionResult RegisterForm(Models.RegisterModel registerModelResponse)
@@ -43,9 +43,23 @@ namespace ProjectOne.Controllers
             }
         }
 
+        [HttpGet]
         public IActionResult LogIn()
         {
-            return View();
+            return View(new LogInModel());
+        }
+
+        [HttpPost]
+        public IActionResult LogInForm(Models.LogInModel logInModelResponse)
+        {
+            if (ModelState.IsValid)
+            {
+                return View("EnrollInClass");
+            }
+            else
+            {
+                return View("StudentClasses", logInModelResponse);
+            }
         }
 
         [HttpGet]
@@ -62,9 +76,13 @@ namespace ProjectOne.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult EnrollInClass()
         {
-            return View();
+            var classListRepo = new ClassListRepository();
+            var classList = classListRepo.ClassList;
+
+            return View(classList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
