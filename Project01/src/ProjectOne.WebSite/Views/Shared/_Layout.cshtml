@@ -40,13 +40,16 @@
 
     <partial name="_CookieConsentPartial" />
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            &copy; <span id="year-date"></span> - The Learning Center
-        </footer>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; <span id="year-date"></span> - The Learning Center
+        </div>
+    </footer>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
