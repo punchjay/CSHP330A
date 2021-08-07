@@ -2,7 +2,7 @@
 
 namespace ProjectOne.WebSite.Models
 {
-    public class LoginModel
+    public class RegisterModel
     {
         public int Id { get; set; }
 
@@ -14,5 +14,10 @@ namespace ProjectOne.WebSite.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password")]
+        public string ConfirmPassword { get; set; }
     }
 }

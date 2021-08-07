@@ -1,28 +1,32 @@
-﻿@model ProjectOne.WebSite.Models.LoginModel
+﻿@model ProjectOne.WebSite.Models.RegisterModel
 
 @{
-    ViewData["Title"] = "Log In";
+    ViewData["Title"] = "Register";
 }
 
 <div class="text-left">
     <h4>@ViewData["Title"]</h4>
     <div class="col-md-4 padding-left-none">
-        <form asp-action="LogIn" asp-route-returnurl="@ViewData["ReturnUrl"]">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form method="post" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">
+            <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
+                <label asp-for="UserName"></label>
                 <input asp-for="UserName" class="form-control" />
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
+                <label asp-for="Password"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="@ViewData["Title"]" class="btn btn-success" />
             </div>
         </form>
-        <a>@Html.ActionLink("Register a New User", "Register")</a>
     </div>
 </div>

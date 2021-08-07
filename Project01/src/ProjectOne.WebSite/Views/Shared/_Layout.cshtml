@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -30,8 +32,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="ClassList">Class List</a></li>
+                    @if (Context.Session.GetString("User") != null)
+                    {
+                        <li><a asp-area="" asp-controller="Home" asp-action="StudentClasses">Enrolled Classes</a></li>
+                    }
+                    <li><a asp-area="" asp-controller="Home" asp-action="EnrollInClass">Enroll</a></li>
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
