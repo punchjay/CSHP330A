@@ -55,7 +55,16 @@ namespace ProjectOne.WebSite.Controllers
         [HttpGet]
         public IActionResult EnrollClass()
         {
-            return View();
+            var classList = classListManager
+                .ClassList
+                .Select(t => new EnrollClassModel
+                {
+                    ClassId = t.ClassId,
+                    ClassName = t.ClassName,
+                })
+                .ToArray();
+
+            return View(classList);
         }
 
         public ActionResult LogIn()
