@@ -1,36 +1,42 @@
-﻿//using ProjectOne.Models;
-//using System.Collections.Generic;
-//using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
-//namespace ProjectOne
-//{
-//    public interface IClassListRepository
-//    {
-//        IEnumerable<ClassListModel> ClassList { get; }
-//    }
+namespace ProjectOne.Repository
+{
+    public interface IClassListRepository
+    {
+        ClassListModel[] ClassList { get; }
+    }
 
-//    public class ClassListRepository : IClassListRepository
-//    {
-//        public IEnumerable<ClassListModel> ClassList
-//        {
-//            get
-//            {
-//                IEnumerable<ClassListModel> items;
+    public class ClassListModel
+    {
+        public int ClassId { get; set; }
+        public string ClassName { get; set; }
+        public string ClassDescription { get; set; }
+        public decimal ClassPrice { get; set; }
+    }
 
-//                var database = new Db.minicstructorContext();
+    public class ClassListRepository : IClassListRepository
+    {
+        public ClassListModel[] ClassList
+        {
+            get
+            {
+                ClassListModel[] items;
 
-//                items = database.Class
-//                .Select(t => new ClassListModel
-//                {
-//                    ClassId = t.ClassId,
-//                    ClassDescription = t.ClassDescription,
-//                    ClassName = t.ClassName,
-//                    ClassPrice = t.ClassPrice,
-//                })
-//                .ToArray();
+                var database = DatabaseAccessor.Instance;
+                items = database.Class
+                .Select(t => new ClassListModel
+                {
+                    ClassId = t.ClassId,
+                    ClassDescription = t.ClassDescription,
+                    ClassName = t.ClassName,
+                    ClassPrice = t.ClassPrice,
+                })
+                .ToArray();
 
-//                return items;
-//            }
-//        }
-//    }
-//}
+                return items;
+            }
+        }
+    }
+}

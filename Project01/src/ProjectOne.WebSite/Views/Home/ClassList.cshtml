@@ -1,9 +1,9 @@
-﻿@model ProjectOne.Models.ClassListModel[]
+﻿@*@model ProjectOne.Models.ClassListModel[]*@
 @{
     ViewData["Title"] = "Classes";
 }
 
-@if (Model == null)
+@*@if (Model == null)
 {
     <h4>Loading...</h4>
 }
@@ -36,8 +36,8 @@
     </div>
 }
 else
-{
+{*@
     <h4>No @ViewData["Title"] found.</h4>
-}
+@*}*@
 
 

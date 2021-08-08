@@ -14,11 +14,13 @@ namespace ProjectOne.WebSite.Controllers
 {
     public class HomeController : Controller
     {
-
+        private readonly IClassListManager classListManager;
         private readonly IUserManager userManager;
 
-        public HomeController(IUserManager userManager)
+        public HomeController(IClassListManager classListManager, 
+            IUserManager userManager)
         {
+            this.classListManager = classListManager;
             this.userManager = userManager;
         }
 
@@ -30,10 +32,8 @@ namespace ProjectOne.WebSite.Controllers
         [HttpGet]
         public IActionResult ClassList()
         {
-            //var classListRepo = new ClassListRepository();
-            //var classList = classListRepo.ClassList;
-
-            return View();
+            var classList = classListManager.ClassList;
+            return View(classList);
         }
 
         public IActionResult StudentClasses()

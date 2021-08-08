@@ -25,11 +25,8 @@ namespace ProjectOne.WebSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddSingleton<ICategoryManager, CategoryManager>();
-            //services.AddSingleton<ICategoryRepository, CategoryRepository>();
-
-            //services.AddSingleton<IProductManager, ProductManager>();
-            //services.AddSingleton<IProductRepository, ProductRepository>();
+            services.AddSingleton<IClassListManager, ClassListManager>();
+            services.AddSingleton<IClassListRepository, ClassListRepository>();
 
             services.AddSingleton<IUserManager, UserManager>();
             services.AddSingleton<IUserRepository, UserRepository>();
