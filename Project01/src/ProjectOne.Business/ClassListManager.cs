@@ -38,7 +38,7 @@ namespace ProjectOne.Business
                         ClassName = t.ClassName,
                         ClassPrice = t.ClassPrice,
                     })
-                .ToArray();
+                    .ToArray();
             }
         }
     }
