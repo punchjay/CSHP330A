@@ -1,0 +1,43 @@
+﻿@model ProjectOne.WebSite.Models.ClassListModel[]
+@{
+    ViewData["Title"] = "Classes";
+}
+
+@if (Model == null)
+{
+    <h4>Loading...</h4>
+}
+@if (Model.Length > 0)
+{
+    <div class="text-left">
+        <h4>@ViewData["Title"]</h4>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            @foreach (var c in Model)
+            {
+                var className = c.ClassName;
+                var classDescription = c.ClassDescription;
+                var classPrice = c.ClassPrice.ToString("C");
+                <tbody>
+                    <tr>
+                        <td>@className</td>
+                        <td>@classDescription</td>
+                        <td>@classPrice</td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
+}
+else
+{
+    <h4>No @ViewData["Title"] found.</h4>
+}
+
+
