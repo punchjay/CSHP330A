@@ -8,6 +8,7 @@ using ProjectOne.WebSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Security.Claims;
 
 namespace ProjectOne.WebSite.Controllers
@@ -17,7 +18,7 @@ namespace ProjectOne.WebSite.Controllers
         private readonly IClassListManager classListManager;
         private readonly IUserManager userManager;
 
-        public HomeController(IClassListManager classListManager, 
+        public HomeController(IClassListManager classListManager,
             IUserManager userManager)
         {
             this.classListManager = classListManager;
@@ -32,7 +33,14 @@ namespace ProjectOne.WebSite.Controllers
         [HttpGet]
         public IActionResult ClassList()
         {
-            var classList = classListManager.ClassList;
+            var classList = classListManager.ClassList.Select(t => new Models.ClassListModel
+            {
+                ClassId = t.ClassId,
+                ClassDescription = t.ClassDescription,
+                ClassName = t.ClassName,
+                ClassPrice = t.ClassPrice,
+            })
+                .ToArray();
             return View(classList);
         }
 
@@ -44,9 +52,6 @@ namespace ProjectOne.WebSite.Controllers
         [HttpGet]
         public IActionResult EnrollInClass()
         {
-            //var classListRepo = new ClassListRepository();
-            //var classList = classListRepo.ClassList;
-
             return View();
         }
 

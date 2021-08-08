@@ -16,7 +16,7 @@ namespace ProjectOne.Business
         public decimal ClassPrice { get; set; }
     }
 
-    public class ClassListManager: IClassListManager
+    public class ClassListManager : IClassListManager
     {
         private readonly IClassListRepository classListRepository;
 
@@ -27,7 +27,8 @@ namespace ProjectOne.Business
 
         public ClassListModel[] ClassList
         {
-            get {
+            get
+            {
                 return classListRepository
                     .ClassList
                     .Select(t => new ClassListModel

@@ -9,10 +9,10 @@ namespace ProjectOne.Repository
             Instance = new minicstructorContext();
         }
 
-        public static minicstructorContext Instance 
-        { 
-            get; 
-            private set; 
+        public static minicstructorContext Instance
+        {
+            get;
+            private set;
         }
     }
 }
