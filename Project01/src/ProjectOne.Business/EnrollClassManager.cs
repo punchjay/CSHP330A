@@ -1,8 +1,9 @@
-﻿using System.Linq;
+﻿using ProjectOne.Repository;
+using System.Linq;
 
-namespace ProjectOne.Repository
+namespace ProjectOne.Business
 {
-    public interface IEnrollClassRepository
+    public interface IEnrollClassManager
     {
         EnrollClassModel[] EnrollClass { get; }
     }
@@ -13,15 +14,21 @@ namespace ProjectOne.Repository
         public string ClassName { get; set; }
     }
 
-    public class EnrollClassRepository : IEnrollClassRepository
+    public class EnrollClassManager : IEnrollClassManager
     {
+        private readonly IEnrollClassRepository enrollClassRepository;
+
+        public EnrollClassManager(IEnrollClassRepository enrollClassRepository)
+        {
+            this.enrollClassRepository = enrollClassRepository;
+        }
+
         public EnrollClassModel[] EnrollClass
         {
             get
             {
-                return DatabaseAccessor
-                    .Instance
-                    .Class
+                return enrollClassRepository
+                    .EnrollClass
                     .Select(t => new EnrollClassModel
                     {
                         ClassId = t.ClassId,

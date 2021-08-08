@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ProjectOne.Business;
-using ProjectOne.WebSite;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,12 +15,15 @@ namespace ProjectOne.WebSite.Controllers
     public class HomeController : Controller
     {
         private readonly IClassListManager classListManager;
+        private readonly IEnrollClassManager enrollClassManager;
         private readonly IUserManager userManager;
 
         public HomeController(IClassListManager classListManager,
+            IEnrollClassManager enrollClassManager,
             IUserManager userManager)
         {
             this.classListManager = classListManager;
+            this.enrollClassManager = enrollClassManager;
             this.userManager = userManager;
         }
 
@@ -55,8 +57,8 @@ namespace ProjectOne.WebSite.Controllers
         [HttpGet]
         public IActionResult EnrollClass()
         {
-            var classList = classListManager
-                .ClassList
+            var enrollClassList = enrollClassManager
+                .EnrollClass
                 .Select(t => new Models.EnrollClassModel
                 {
                     ClassId = t.ClassId,
@@ -64,12 +66,13 @@ namespace ProjectOne.WebSite.Controllers
                 })
                 .ToArray();
 
-            return View(classList);
+            return View(enrollClassList);
         }
 
         public ActionResult LogIn()
         {
             ViewData["ReturnUrl"] = Request.Query["returnUrl"];
+
             return View();
         }
 

@@ -2,30 +2,34 @@
 
 namespace ProjectOne.Repository
 {
-    public interface IEnrollClassRepository
+    public interface IClassListRepository
     {
-        EnrollClassModel[] EnrollClass { get; }
+        ClassListModel[] ClassList { get; }
     }
 
-    public class EnrollClassModel
+    public class ClassListModel
     {
         public int ClassId { get; set; }
         public string ClassName { get; set; }
+        public string ClassDescription { get; set; }
+        public decimal ClassPrice { get; set; }
     }
 
-    public class EnrollClassRepository : IEnrollClassRepository
+    public class ClassListRepository : IClassListRepository
     {
-        public EnrollClassModel[] EnrollClass
+        public ClassListModel[] ClassList
         {
             get
             {
                 return DatabaseAccessor
                     .Instance
                     .Class
-                    .Select(t => new EnrollClassModel
+                    .Select(t => new ClassListModel
                     {
                         ClassId = t.ClassId,
+                        ClassDescription = t.ClassDescription,
                         ClassName = t.ClassName,
+                        ClassPrice = t.ClassPrice,
                     })
                     .ToArray();
             }
