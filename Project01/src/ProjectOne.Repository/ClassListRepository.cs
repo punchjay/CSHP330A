@@ -21,20 +21,17 @@ namespace ProjectOne.Repository
         {
             get
             {
-                ClassListModel[] items;
-
-                var database = DatabaseAccessor.Instance;
-                items = database.Class
-                .Select(t => new ClassListModel
-                {
-                    ClassId = t.ClassId,
-                    ClassDescription = t.ClassDescription,
-                    ClassName = t.ClassName,
-                    ClassPrice = t.ClassPrice,
-                })
-                .ToArray();
-
-                return items;
+                return DatabaseAccessor
+                    .Instance
+                    .Class
+                    .Select(t => new ClassListModel
+                    {
+                        ClassId = t.ClassId,
+                        ClassDescription = t.ClassDescription,
+                        ClassName = t.ClassName,
+                        ClassPrice = t.ClassPrice,
+                    })
+                    .ToArray();
             }
         }
     }
