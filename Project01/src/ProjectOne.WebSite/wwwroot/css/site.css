@@ -17,6 +17,12 @@
     border-top: 1px solid #eee;
 }
 
+.table .thead-dark th {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #454d55;
+}
+
 .margin-top {
     margin-top: 40px;
 }

@@ -36,8 +36,8 @@
                     @if (Context.Session.GetString("User") != null)
                     {
                         <li><a asp-area="" asp-controller="Home" asp-action="StudentClasses">Enrolled Classes</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="EnrollInClass">Enroll</a></li>
                     }
-                    <li><a asp-area="" asp-controller="Home" asp-action="EnrollInClass">Enroll</a></li>
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
