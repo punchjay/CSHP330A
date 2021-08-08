@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ProjectOne.Business;
-using ProjectOne.WebSite.Models;
+using ProjectOne.WebSite;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -57,7 +57,7 @@ namespace ProjectOne.WebSite.Controllers
         {
             var classList = classListManager
                 .ClassList
-                .Select(t => new EnrollClassModel
+                .Select(t => new Models.EnrollClassModel
                 {
                     ClassId = t.ClassId,
                     ClassName = t.ClassName,
@@ -74,7 +74,7 @@ namespace ProjectOne.WebSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogIn(LoginModel loginModel, string returnUrl)
+        public ActionResult LogIn(Models.LoginModel loginModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace ProjectOne.WebSite.Controllers
                 }
                 else
                 {
-                    var json = JsonConvert.SerializeObject(new ProjectOne.WebSite.Models.UserModel
+                    var json = JsonConvert.SerializeObject(new Models.UserModel
                     {
                         Id = user.Id,
                         Name = user.Name
@@ -158,7 +158,7 @@ namespace ProjectOne.WebSite.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new Models.ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
