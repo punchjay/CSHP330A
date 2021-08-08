@@ -34,11 +34,11 @@ namespace ProjectOne.WebSite
             services.AddSession();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-       .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-       {
-           options.LoginPath = new PathString("/Home/Login");
-           options.AccessDeniedPath = new PathString("/Account/Denied");
-       });
+               .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+               {
+                   options.LoginPath = new PathString("/Home/Login");
+                   options.AccessDeniedPath = new PathString("/Account/Denied");
+               });
 
             services.Configure<CookiePolicyOptions>(options =>
             {
