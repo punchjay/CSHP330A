@@ -6,21 +6,21 @@
 
 <div class="text-left">
     <h4>@ViewData["Title"]</h4>
-        <div class="col-md-4 padding-left-none">
-            <form asp-action="EnrollInClassForm">
-                <div class="form-group">
-                    <select name="" id="">
-                        @foreach (var c in Model)
-                        {
-                            var classId = c.ClassId;
-                            var className = c.ClassName;
-                            <option value="@classId">@className</option>
-                        }
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Add a Class" class="btn btn-success" />
-                </div>
-            </form>
-        </div>
+    <div class="col-md-4 padding-left-none">
+        <form asp-action="EnrollClassForm">
+            <div class="form-group">
+                <select name="" id="">
+                    @foreach (var c in Model)
+                    {
+                        var classId = c.ClassId;
+                        var className = c.ClassName;
+                        <option value="@classId">@className</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add a Class" class="btn btn-success" />
+            </div>
+        </form>
     </div>
+</div>

@@ -27,13 +27,10 @@ namespace ProjectOne.WebSite.Controllers
             this.userManager = userManager;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public ActionResult Index() => View();
 
         [HttpGet]
-        public IActionResult ClassList()
+        public ActionResult ClassList()
         {
             var classList = classListManager
                 .ClassList
@@ -55,7 +52,7 @@ namespace ProjectOne.WebSite.Controllers
         }
 
         [HttpGet]
-        public IActionResult EnrollClass()
+        public ActionResult EnrollClass()
         {
             var enrollClassList = enrollClassManager
                 .EnrollClass
@@ -67,6 +64,19 @@ namespace ProjectOne.WebSite.Controllers
                 .ToArray();
 
             return View(enrollClassList);
+        }
+
+        [HttpPost]
+        public ActionResult EnrollClassForm(Models.EnrollClassModel enrollClassModel)
+        {
+            if (ModelState.IsValid)
+            {
+                return View("StudentClass", enrollClassModel);
+            }
+            else
+            {
+                return View(enrollClassModel);
+            }
         }
 
         public ActionResult LogIn()
