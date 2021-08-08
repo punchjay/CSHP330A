@@ -47,13 +47,13 @@ namespace ProjectOne.WebSite.Controllers
             return View(classList);
         }
 
-        public IActionResult StudentClasses()
+        public IActionResult StudentClass()
         {
             return View();
         }
 
         [HttpGet]
-        public IActionResult EnrollInClass()
+        public IActionResult EnrollClass()
         {
             return View();
         }

@@ -13,17 +13,17 @@
             <h4><a asp-area="" asp-controller="Home" asp-action="ClassList">Class List</a></h4>
             <p>See all our class offerings.</p>
         </div>
-        @if (Context.Session.GetString("User") != null)
-        {
+        @*@if (Context.Session.GetString("User") != null)
+        {*@
             <div class="col-md-3">
-                <h4><a asp-area="" asp-controller="Home" asp-action="StudentClasses">Your Enrolled Classes</a></h4>
+                <h4><a asp-area="" asp-controller="Home" asp-action="StudentClass">Your Enrolled Classes</a></h4>
                 <p>See the classes you are enrolled in.</p>
             </div>
             <div class="col-md-3">
-                <h4><a asp-area="" asp-controller="Home" asp-action="EnrollInClass">Enroll in a Class</a></h4>
+                <h4><a asp-area="" asp-controller="Home" asp-action="EnrollClass">Enroll in a Class</a></h4>
                 <p>Take a new class.</p>
             </div>
-        }
+        @*}*@
     </div>
 </div>
 

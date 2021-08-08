@@ -1,6 +1,6 @@
 ﻿namespace ProjectOne.WebSite.Models
 {
-    public class EnrollInClassModel
+    public class EnrollClassModel
     {
     }
 }
