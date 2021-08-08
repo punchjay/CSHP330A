@@ -33,18 +33,18 @@ namespace ProjectOne.WebSite.Controllers
         [HttpGet]
         public IActionResult ClassList()
         {
-            var classList = classListManager
-                .ClassList
-                .Select(t => new Models.ClassListModel
-                {
-                    ClassId = t.ClassId,
-                    ClassDescription = t.ClassDescription,
-                    ClassName = t.ClassName,
-                    ClassPrice = t.ClassPrice,
-                })
-                .ToArray();
+            //var classList = classListManager
+            //    .ClassList
+            //    .Select(t => new Models.ClassListModel
+            //    {
+            //        ClassId = t.ClassId,
+            //        ClassDescription = t.ClassDescription,
+            //        ClassName = t.ClassName,
+            //        ClassPrice = t.ClassPrice,
+            //    })
+            //    .ToArray();
 
-            return View(classList);
+            return View();
         }
 
         public IActionResult StudentClasses()
