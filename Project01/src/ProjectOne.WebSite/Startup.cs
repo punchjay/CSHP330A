@@ -31,6 +31,10 @@ namespace ProjectOne.WebSite
             services.AddSingleton<IEnrollClassManager, EnrollClassManager>();
             services.AddSingleton<IEnrollClassRepository, EnrollClassRepository>();
 
+            services.AddSingleton<IStudentClassManager, StudentClassManager>();
+            services.AddSingleton<IStudentClassRepository, StudentClassRepository>();
+
+
 
             services.AddSingleton<IUserManager, UserManager>();
             services.AddSingleton<IUserRepository, UserRepository>();

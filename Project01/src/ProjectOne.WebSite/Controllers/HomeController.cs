@@ -16,14 +16,17 @@ namespace ProjectOne.WebSite.Controllers
     {
         private readonly IClassListManager classListManager;
         private readonly IEnrollClassManager enrollClassManager;
+        private readonly IStudentClassManager studentClassManager;
         private readonly IUserManager userManager;
 
         public HomeController(IClassListManager classListManager,
             IEnrollClassManager enrollClassManager,
+            IStudentClassManager studentClassManager,
             IUserManager userManager)
         {
             this.classListManager = classListManager;
             this.enrollClassManager = enrollClassManager;
+            this.studentClassManager = studentClassManager;
             this.userManager = userManager;
         }
 
@@ -48,7 +51,15 @@ namespace ProjectOne.WebSite.Controllers
 
         public IActionResult StudentClass()
         {
-            return View();
+            var userClasses = studentClassManager
+                .UserClasses
+                .Select(t => new Models.UserClassModel
+                {
+                    ClassId = t.ClassId,
+                    UserId = t.UserId
+                }).ToArray();
+
+            return View(userClasses);
         }
 
         [HttpGet]

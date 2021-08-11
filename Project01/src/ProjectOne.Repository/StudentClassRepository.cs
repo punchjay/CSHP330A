@@ -10,7 +10,7 @@ namespace ProjectOne.Repository
     public class UserClassModel
     {
         public int ClassId { get; set; }
-        public int UserName { get; set; }
+        public int UserId { get; set; }
     }
 
     public class StudentClassRepository : IStudentClassRepository
@@ -25,7 +25,7 @@ namespace ProjectOne.Repository
                      .Select(t => new UserClassModel
                      {
                          ClassId = t.ClassId,
-                         UserName = t.UserId,
+                         UserId = t.UserId,
                      })
                      .ToArray();
             }
