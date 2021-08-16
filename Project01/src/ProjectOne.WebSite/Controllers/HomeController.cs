@@ -49,7 +49,8 @@ namespace ProjectOne.WebSite.Controllers
             return View(classList);
         }
 
-        public IActionResult StudentClass()
+        [HttpGet]
+        public ActionResult StudentClass()
         {
             var userClasses = studentClassManager
                 .UserClasses
@@ -90,6 +91,7 @@ namespace ProjectOne.WebSite.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult LogIn()
         {
             ViewData["ReturnUrl"] = Request.Query["returnUrl"];
@@ -166,13 +168,11 @@ namespace ProjectOne.WebSite.Controllers
         public ActionResult LogOff()
         {
             HttpContext.Session.Remove("User");
-
             HttpContext.SignOutAsync(
             CookieAuthenticationDefaults.AuthenticationScheme);
 
             return Redirect("~/");
         }
-
 
         public ActionResult Register()
         {
@@ -184,9 +184,9 @@ namespace ProjectOne.WebSite.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = userManager.Register(registerModel.UserName, registerModel.Password);
+                var newUser = userManager.Register(registerModel.UserName, registerModel.Password);
 
-                if (user == null)
+                if (newUser == null)
                 {
                     ModelState.AddModelError("msg", "The email is already in use.");
                     return View();
@@ -196,7 +196,6 @@ namespace ProjectOne.WebSite.Controllers
 
             return View();
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
