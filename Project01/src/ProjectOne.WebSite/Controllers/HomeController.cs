@@ -191,10 +191,10 @@ namespace ProjectOne.WebSite.Controllers
                     ModelState.AddModelError("msg", "The email is already in use.");
                     return View();
                 }
-                return Redirect("~/");
+                return View("LogIn");
             }
 
-            return View("LogIn");
+            return View("LogIn", registerModel);
         }
 
 
