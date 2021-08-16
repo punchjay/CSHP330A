@@ -194,7 +194,7 @@ namespace ProjectOne.WebSite.Controllers
                 return View("LogIn");
             }
 
-            return View("LogIn", registerModel);
+            return View();
         }
 
 
