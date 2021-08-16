@@ -41,7 +41,7 @@ namespace ProjectOne.Repository
             }
 
             var user = DatabaseAccessor.Instance.User
-                    .Add(new ProjectOne.Database.User
+                    .Add(new Database.User
                     {
                         UserEmail = email,
                         UserPassword = password

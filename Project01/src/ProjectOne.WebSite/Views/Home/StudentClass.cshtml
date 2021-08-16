@@ -21,13 +21,13 @@
             </thead>
             @foreach (var c in Model)
             {
-                //var className = c.ClassName;
-                //var classDescription = c.ClassDescription;
-                //var classPrice = c.ClassPrice.ToString("C");
+                //var className = c.Class.ClassName;
+                var classDescription = c.User;
+                //var classPrice = c.Class.ClassPrice.ToString("C");
                 <tbody>
                     <tr>
-                        <td>@c.UserId</td>
-                        <td>@c.ClassId</td>
+                        @*<td>@className</td>*@
+                        <td>@classDescription</td>
                         @*<td>@classPrice</td>*@
                     </tr>
                 </tbody>

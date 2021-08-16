@@ -56,7 +56,7 @@ namespace ProjectOne.WebSite.Controllers
                 .Select(t => new Models.UserClassModel
                 {
                     ClassId = t.ClassId,
-                    UserId = t.UserId
+                    UserId = t.UserId,
                 }).ToArray();
 
             return View(userClasses);
@@ -173,11 +173,30 @@ namespace ProjectOne.WebSite.Controllers
             return Redirect("~/");
         }
 
+
         public ActionResult Register()
         {
-
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Register(Models.RegisterModel registerModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = userManager.Register(registerModel.UserName, registerModel.Password);
+
+                if (user == null)
+                {
+                    ModelState.AddModelError("msg", "The email is already in use.");
+                    return View();
+                }
+                return Redirect("~/");
+            }
+
+            return View("LogIn");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
