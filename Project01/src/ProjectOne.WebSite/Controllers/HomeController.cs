@@ -30,6 +30,7 @@ namespace ProjectOne.WebSite.Controllers
             this.userManager = userManager;
         }
 
+        [HttpGet]
         public ActionResult Index() => View();
 
         [HttpGet]
@@ -174,10 +175,8 @@ namespace ProjectOne.WebSite.Controllers
             return Redirect("~/");
         }
 
-        public ActionResult Register()
-        {
-            return View();
-        }
+        [HttpGet]
+        public ActionResult Register() => View();
 
         [HttpPost]
         public ActionResult Register(Models.RegisterModel registerModel)

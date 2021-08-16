@@ -28,7 +28,7 @@ namespace ProjectOne.Business
             get
             {
                 return enrollClassRepository
-                    .EnrollClass
+                    .ClassList
                     .Select(t => new EnrollClassModel
                     {
                         ClassId = t.ClassId,

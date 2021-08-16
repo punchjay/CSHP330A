@@ -3,19 +3,6 @@ using System.Linq;
 
 namespace ProjectOne.Business
 {
-    public interface IClassListManager
-    {
-        ClassListModel[] ClassList { get; }
-    }
-
-    public class ClassListModel
-    {
-        public int ClassId { get; set; }
-        public string ClassName { get; set; }
-        public string ClassDescription { get; set; }
-        public decimal ClassPrice { get; set; }
-    }
-
     public class ClassListManager : IClassListManager
     {
         private readonly IClassListRepository classListRepository;
