@@ -2,18 +2,6 @@
 
 namespace ProjectOne.Repository
 {
-    public interface IUserRepository
-    {
-        UserModel LogIn(string email, string password);
-        UserModel Register(string email, string password);
-    }
-
-    public class UserModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-
     public class UserRepository : IUserRepository
     {
         public UserModel LogIn(string email, string password)
