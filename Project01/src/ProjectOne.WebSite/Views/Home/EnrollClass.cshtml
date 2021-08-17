@@ -8,9 +8,10 @@
     <h4>@ViewData["Title"]</h4>
     <div class="col-md-4 padding-left-none">
         <p>Select a Class to enroll in.</p>
-        <form asp-action="EnrollClassForm">
+        <form method="post" asp-action="EnrollClassForm">
             <div class="form-group">
-                <select name="" id="">
+                <input type="hidden" name="className" />
+                <select id="className" name="classId">
                     @foreach (var c in Model)
                     {
                         var classId = c.ClassId;
