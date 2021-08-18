@@ -16,7 +16,7 @@ namespace ProjectOne.Business
         {
             get
             {
-                return classListRepository
+                var classListRep = classListRepository
                     .ClassList
                     .Select(t => new ClassListModel
                     {
@@ -26,6 +26,8 @@ namespace ProjectOne.Business
                         ClassPrice = t.ClassPrice,
                     })
                     .ToArray();
+
+                return classListRep;
             }
         }
     }

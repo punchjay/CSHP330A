@@ -1,4 +1,4 @@
-﻿@model ProjectOne.WebSite.Models.UserClassModel[]
+﻿@model ProjectOne.WebSite.Models.ClassListModel[]
 @{
     ViewData["Title"] = "Student Classes";
 }
@@ -22,7 +22,7 @@
             @foreach (var c in Model)
             {
                 //var className = c.Class.ClassName;
-                var classDescription = c.User;
+                var classDescription = c.ClassId;
                 //var classPrice = c.Class.ClassPrice.ToString("C");
                 <tbody>
                     <tr>

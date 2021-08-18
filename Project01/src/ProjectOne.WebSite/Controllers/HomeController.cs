@@ -56,9 +56,15 @@ namespace ProjectOne.WebSite.Controllers
             var userJson = HttpContext.Session.GetString("User");
             var user = JsonConvert.DeserializeObject<Models.UserModel>(userJson);
 
-            var items = studentClassManager.GetUser(user.Id);
+            var studentClassList = studentClassManager.GetUser(user.Id)
+                .Select(t => new Models.ClassListModel { 
+                    ClassId = t.ClassId,
+                    ClassName = t.ClassName,
+                    ClassDescription = t.ClassDescription,
+                    ClassPrice = t.ClassPrice
+                }).ToArray();
 
-            return View(items);
+            return View(studentClassList);
         }
 
         [HttpGet]
