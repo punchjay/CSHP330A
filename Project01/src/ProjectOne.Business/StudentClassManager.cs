@@ -32,7 +32,8 @@ namespace ProjectOne.Business
         public UserClassModel[] GetUser(int userId)
         {
             var items = studentClassRepository.GetUser(userId)
-                .Select(t => {
+                .Select(t =>
+                {
 
                     var classList = classListRepository.ClassList;
 
