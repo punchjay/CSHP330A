@@ -33,8 +33,6 @@ namespace ProjectOne.WebSite
             services.AddSingleton<IStudentClassManager, StudentClassManager>();
             services.AddSingleton<IStudentClassRepository, StudentClassRepository>();
 
-
-
             services.AddSingleton<IUserManager, UserManager>();
             services.AddSingleton<IUserRepository, UserRepository>();
 
