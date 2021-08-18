@@ -23,5 +23,31 @@ namespace ProjectOne.Repository
                 return ClassList;
             }
         }
+
+        //public ClassListModel GetClassList(int classId)
+        //{
+        //    var classes = DatabaseAccessor.Instance.Class.First(t => t.ClassId == classId);
+
+        //    return new ClassListModel
+        //    {
+        //        ClassId = classes.ClassId,
+        //        ClassDescription = classes.ClassDescription,
+        //        ClassName = classes.ClassName,
+        //        ClassPrice = classes.ClassPrice,
+        //    };
+        //}
+
+        public ClassListModel GetClassList(int classId)
+        {
+            var classes = DatabaseAccessor.Instance.Class.First(t => t.ClassId == classId);
+
+            return new ClassListModel
+            {
+                ClassId = classes.ClassId,
+                ClassDescription = classes.ClassDescription,
+                ClassName = classes.ClassName,
+                ClassPrice = classes.ClassPrice,
+            };
+        }
     }
 }

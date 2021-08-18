@@ -35,12 +35,14 @@ namespace ProjectOne.Business
                 .Select(t =>
                 {
 
-                    var classList = classListRepository.ClassList;
+                    var classList = classListRepository.GetClassList(t.ClassId);
 
                     return new UserClassModel
                     {
-                        ClassId = t.ClassId
-
+                        ClassId = t.ClassId,
+                        ClassName = classList.ClassName,
+                        ClassDescription = classList.ClassDescription,
+                        ClassPrice = classList.ClassPrice,
                     };
                 })
                 .ToArray();
