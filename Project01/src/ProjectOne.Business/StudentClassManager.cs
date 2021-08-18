@@ -31,10 +31,9 @@ namespace ProjectOne.Business
 
         public UserClassModel[] GetUser(int userId)
         {
-            var items = studentClassRepository.GetUser(userId)
+            var studentClass = studentClassRepository.GetUser(userId)
                 .Select(t =>
                 {
-
                     var classList = classListRepository.GetClassList(t.ClassId);
 
                     return new UserClassModel
@@ -47,7 +46,7 @@ namespace ProjectOne.Business
                 })
                 .ToArray();
 
-            return items;
+            return studentClass;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ProjectOne.Repository
         {
             get
             {
-                var ClassList = DatabaseAccessor
+                var classList = DatabaseAccessor
                     .Instance
                     .Class
                     .Select(t => new ClassListModel
@@ -20,34 +20,26 @@ namespace ProjectOne.Repository
                     })
                     .ToArray();
 
-                return ClassList;
+                return classList;
             }
         }
 
-        //public ClassListModel GetClassList(int classId)
-        //{
-        //    var classes = DatabaseAccessor.Instance.Class.First(t => t.ClassId == classId);
-
-        //    return new ClassListModel
-        //    {
-        //        ClassId = classes.ClassId,
-        //        ClassDescription = classes.ClassDescription,
-        //        ClassName = classes.ClassName,
-        //        ClassPrice = classes.ClassPrice,
-        //    };
-        //}
-
         public ClassListModel GetClassList(int classId)
         {
-            var classes = DatabaseAccessor.Instance.Class.First(t => t.ClassId == classId);
+            var classById = DatabaseAccessor
+                .Instance
+                .Class
+                .First(t => t.ClassId == classId);
 
-            return new ClassListModel
+            var classList = new ClassListModel
             {
-                ClassId = classes.ClassId,
-                ClassDescription = classes.ClassDescription,
-                ClassName = classes.ClassName,
-                ClassPrice = classes.ClassPrice,
+                ClassId = classById.ClassId,
+                ClassDescription = classById.ClassDescription,
+                ClassName = classById.ClassName,
+                ClassPrice = classById.ClassPrice,
             };
+
+            return classList;
         }
     }
 }

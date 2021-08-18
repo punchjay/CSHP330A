@@ -4,7 +4,6 @@ namespace ProjectOne.Repository
 {
     public interface IStudentClassRepository
     {
-        //UserClassModel[] UserClasses { get; }
         UserClassModel[] GetUser(int userId);
     }
 
@@ -16,22 +15,6 @@ namespace ProjectOne.Repository
 
     public class StudentClassRepository : IStudentClassRepository
     {
-        //public UserClassModel[] UserClasses
-        //{
-        //    get
-        //    {
-        //        return DatabaseAccessor
-        //             .Instance
-        //             .UserClass
-        //             .Select(t => new UserClassModel
-        //             {
-        //                 ClassId = t.ClassId,
-        //                 UserId = t.UserId,
-        //             })
-        //             .ToArray();
-        //    }
-        //}
-
         public UserClassModel[] GetUser(int userId)
         {
             var userClass = DatabaseAccessor

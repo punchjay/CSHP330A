@@ -9,7 +9,7 @@
                 @{
                     var user = JsonConvert.DeserializeObject<UserModel>(Context.Session.GetString("User"));
                 }
-                <a asp-action="manage" title="Manage">Hello @user.Name</a>
+                <a asp-action="StudentClass" title="Manage">Hello @user.Name</a>
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>

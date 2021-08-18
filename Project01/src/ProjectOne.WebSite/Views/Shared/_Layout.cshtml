@@ -33,11 +33,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="ClassList">Class List</a></li>
-                    @*@if (Context.Session.GetString("User") != null)
-                    {*@
+                    @if (Context.Session.GetString("User") != null)
+                    {
                         <li><a asp-area="" asp-controller="Home" asp-action="StudentClass">Enrolled Classes</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="EnrollClass">Enroll</a></li>
-                    @*}*@
+                    }
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
