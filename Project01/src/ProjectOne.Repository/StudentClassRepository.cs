@@ -34,7 +34,7 @@ namespace ProjectOne.Repository
 
         public UserClassModel[] GetUser(int userId)
         {
-            var user = DatabaseAccessor
+            var userClass = DatabaseAccessor
                 .Instance
                 .UserClass
                 .Where(t => t.UserId == userId)
@@ -45,7 +45,7 @@ namespace ProjectOne.Repository
                     })
                     .ToArray();
 
-            return user;
+            return userClass;
         }
     }
 }

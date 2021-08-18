@@ -8,7 +8,7 @@ namespace ProjectOne.Repository
         {
             get
             {
-                return DatabaseAccessor
+                var ClassList = DatabaseAccessor
                     .Instance
                     .Class
                     .Select(t => new ClassListModel
@@ -19,6 +19,8 @@ namespace ProjectOne.Repository
                         ClassPrice = t.ClassPrice,
                     })
                     .ToArray();
+
+                return ClassList;
             }
         }
     }
