@@ -5,47 +5,46 @@ namespace ProjectOne.Business
 {
     public interface IStudentClassManager
     {
-        UserClassModel[] UserClasses { get; }
-        UserClassModel User(int userId);
+        UserClassModel[] GetUser(int userId);
     }
 
     public class UserClassModel
     {
         public int ClassId { get; set; }
-        public int UserId { get; set; }
-
-        public UserClassModel(int classId, int userId)
-        {
-            ClassId = classId;
-            UserId = userId;
-        }
+        public string ClassName { get; set; }
+        public string ClassDescription { get; set; }
+        public decimal ClassPrice { get; set; }
     }
 
     public class StudentClassManager : IStudentClassManager
     {
         private readonly IStudentClassRepository studentClassRepository;
+        private readonly IClassListRepository classListRepository;
 
-        public StudentClassManager(IStudentClassRepository studentClassRepository)
+
+        public StudentClassManager(IStudentClassRepository studentClassRepository,
+            IClassListRepository classListRepository)
         {
             this.studentClassRepository = studentClassRepository;
+            this.classListRepository = classListRepository;
         }
 
-        public UserClassModel[] UserClasses
+        public UserClassModel[] GetUser(int userId)
         {
-            get
-            {
-                return studentClassRepository
-                        .UserClasses
-                        .Select(t => new UserClassModel(t.ClassId, t.UserId))
-                        .ToArray();
-            }
-        }
+            var items = studentClassRepository.GetUser(userId)
+                .Select(t => {
 
-        public UserClassModel User(int userId)
-        {
-            var userClassModel = studentClassRepository.User(userId);
+                    var classList = classListRepository.ClassList;
 
-            return new UserClassModel(userClassModel.ClassId, userClassModel.UserId);
+                    return new UserClassModel
+                    {
+                        ClassId = t.ClassId
+
+                    };
+                })
+                .ToArray();
+
+            return items;
         }
     }
 }

@@ -37,5 +37,10 @@ namespace ProjectOne.Business
                     .ToArray();
             }
         }
+
+        public EnrollClassModel EnrollClassForm()
+        {
+            return null;
+        }
     }
 }

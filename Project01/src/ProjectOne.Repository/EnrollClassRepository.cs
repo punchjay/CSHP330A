@@ -34,5 +34,27 @@ namespace ProjectOne.Repository
                     .ToArray();
             }
         }
+
+        //public EnrollClassModel EnrollNewClass(int userId, int classId)
+        //{
+        //    //var userFound = DatabaseAccessor.Instance.UserClass
+        //    //.FirstOrDefault(t => t.UserEmail.ToLower() == email.ToLower());
+
+        //    //if (userFound != null)
+        //    //{
+        //    //    return null;
+        //    //}
+
+        //    var enrollNewClass = DatabaseAccessor.Instance.UserClass
+        //            .Add(new Database.UserClass
+        //            {
+        //                UserId = userId,
+        //                ClassId = classId
+        //            });
+
+        //    DatabaseAccessor.Instance.SaveChanges();
+
+        //    return new EnrollClassModel { ClassId = user.Entity.UserId, Name = user.Entity.UserEmail };
+        //}
     }
 }
