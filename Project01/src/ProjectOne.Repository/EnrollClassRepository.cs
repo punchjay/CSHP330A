@@ -2,18 +2,6 @@
 
 namespace ProjectOne.Repository
 {
-    public interface IEnrollClassRepository
-    {
-        EnrollClassModel[] EnrollClassList { get; }
-        UserClassModel EnrollNewClass(int userId, int classId);
-    }
-
-    public class EnrollClassModel
-    {
-        public int ClassId { get; set; }
-        public string ClassName { get; set; }
-    }
-
     public class EnrollClassRepository : IEnrollClassRepository
     {
         public EnrollClassModel[] EnrollClassList
@@ -36,7 +24,8 @@ namespace ProjectOne.Repository
 
         public UserClassModel EnrollNewClass(int userId, int classId)
         {
-            var enrollNewClass = DatabaseAccessor.Instance
+            var enrollNewClass = DatabaseAccessor
+                .Instance
                 .Add(new Database.UserClass
                 {
                     UserId = userId,
@@ -45,11 +34,13 @@ namespace ProjectOne.Repository
 
             DatabaseAccessor.Instance.SaveChanges();
 
-            return new UserClassModel
+            var userClass = new UserClassModel
             {
                 ClassId = enrollNewClass.Entity.ClassId,
                 UserId = enrollNewClass.Entity.UserId,
             };
+
+            return userClass;
         }
     }
 }

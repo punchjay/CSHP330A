@@ -3,18 +3,6 @@ using System.Linq;
 
 namespace ProjectOne.Business
 {
-    public interface IEnrollClassManager
-    {
-        EnrollClassModel[] EnrollClass { get; }
-        UserClassModel EnrollClassForm(int userId, int classId);
-    }
-
-    public class EnrollClassModel
-    {
-        public int ClassId { get; set; }
-        public string ClassName { get; set; }
-    }
-
     public class EnrollClassManager : IEnrollClassManager
     {
         private readonly IEnrollClassRepository enrollClassRepository;
@@ -43,11 +31,13 @@ namespace ProjectOne.Business
         {
             var newUserClass = enrollClassRepository.EnrollNewClass(userId, classId);
 
-            return new UserClassModel
+            var userClass = new UserClassModel
             {
                 ClassId = newUserClass.ClassId,
                 UserId = newUserClass.UserId,
             };
+
+            return userClass;
         }
     }
 }
