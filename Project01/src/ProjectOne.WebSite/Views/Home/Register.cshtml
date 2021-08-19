@@ -7,7 +7,7 @@
 <div class="text-left">
     <h4>@ViewData["Title"]</h4>
     <div class="col-md-4 padding-left-none">
-        <form method="post" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">
+        <form method="post" asp-action="RegisterForm" asp-route-returnurl="@ViewData["ReturnUrl"]">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="UserName"></label>

@@ -3,6 +3,6 @@
     public interface IUserRepository
     {
         UserModel LogIn(string email, string password);
-        UserModel Register(string email, string password);
+        UserModel RegisterUser(string email, string password);
     }
 }

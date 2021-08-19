@@ -191,11 +191,11 @@ namespace ProjectOne.WebSite.Controllers
         public ActionResult Register() => View();
 
         [HttpPost]
-        public ActionResult Register(Models.RegisterModel registerModel)
+        public ActionResult RegisterForm(Models.RegisterModel registerModel)
         {
             if (ModelState.IsValid)
             {
-                var newUser = userManager.Register(registerModel.UserName, registerModel.Password);
+                var newUser = userManager.RegisterForm(registerModel.UserName, registerModel.Password);
 
                 if (newUser == null)
                 {

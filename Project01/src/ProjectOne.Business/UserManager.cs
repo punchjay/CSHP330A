@@ -27,9 +27,9 @@ namespace ProjectOne.Business
             };
         }
 
-        public UserModel Register(string email, string password)
+        public UserModel RegisterForm(string email, string password)
         {
-            var user = userRepository.Register(email, password);
+            var user = userRepository.RegisterUser(email, password);
 
             if (user == null)
             {
