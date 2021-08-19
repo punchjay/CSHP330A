@@ -3,24 +3,10 @@ using System.Linq;
 
 namespace ProjectOne.Business
 {
-    public interface IStudentClassManager
-    {
-        UserClassModel[] GetUser(int userId);
-    }
-
-    public class UserClassModel
-    {
-        public int ClassId { get; set; }
-        public string ClassName { get; set; }
-        public string ClassDescription { get; set; }
-        public decimal ClassPrice { get; set; }
-    }
-
     public class StudentClassManager : IStudentClassManager
     {
         private readonly IStudentClassRepository studentClassRepository;
         private readonly IClassListRepository classListRepository;
-
 
         public StudentClassManager(IStudentClassRepository studentClassRepository,
             IClassListRepository classListRepository)
