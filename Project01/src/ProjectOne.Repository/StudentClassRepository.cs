@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using ProjectOne.Database;
+using System.Linq;
 
 namespace ProjectOne.Repository
 {
@@ -11,6 +12,8 @@ namespace ProjectOne.Repository
     {
         public int ClassId { get; set; }
         public int UserId { get; set; }
+        public Class Class { get; set; }
+        public User User { get; set; }
     }
 
     public class StudentClassRepository : IStudentClassRepository
@@ -24,7 +27,9 @@ namespace ProjectOne.Repository
                     .Select(t => new UserClassModel
                     {
                         ClassId = t.ClassId,
-                        UserId = t.UserId
+                        UserId = t.UserId,
+                        Class = t.Class,
+                        User = t.User,
                     })
                     .ToArray();
 

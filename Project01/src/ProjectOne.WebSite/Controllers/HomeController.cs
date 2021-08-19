@@ -55,26 +55,19 @@ namespace ProjectOne.WebSite.Controllers
         [Authorize]
         public ActionResult StudentClass()
         {
-            if (ModelState.IsValid)
-            {
-                var userJson = HttpContext.Session.GetString("User");
-                var user = JsonConvert.DeserializeObject<Models.UserModel>(userJson);
+            var userJson = HttpContext.Session.GetString("User");
+            var user = JsonConvert.DeserializeObject<Models.UserModel>(userJson);
 
-                var studentClassList = studentClassManager.GetUser(user.Id)
-                .Select(t => new Models.ClassListModel
-                {
-                    ClassId = t.ClassId,
-                    ClassName = t.ClassName,
-                    ClassDescription = t.ClassDescription,
-                    ClassPrice = t.ClassPrice
-                }).ToArray();
-
-                return View(studentClassList);
-            }
-            else
+            var studentClassList = studentClassManager.GetUser(user.Id)
+            .Select(t => new Models.ClassListModel
             {
-                return View();
-            }
+                ClassId = t.ClassId,
+                ClassName = t.ClassName,
+                ClassDescription = t.ClassDescription,
+                ClassPrice = t.ClassPrice
+            }).ToArray();
+
+            return View(studentClassList);
         }
 
         [HttpGet]
