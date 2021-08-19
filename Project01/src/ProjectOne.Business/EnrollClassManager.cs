@@ -16,7 +16,7 @@ namespace ProjectOne.Business
         {
             get
             {
-                return enrollClassRepository
+                var enrollClass = enrollClassRepository
                     .EnrollClassList
                     .Select(t => new EnrollClassModel
                     {
@@ -24,6 +24,8 @@ namespace ProjectOne.Business
                         ClassName = t.ClassName,
                     })
                     .ToArray();
+
+                return enrollClass;
             }
         }
 
