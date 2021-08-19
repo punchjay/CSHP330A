@@ -33,6 +33,11 @@ namespace ProjectOne.Business
         {
             var newUserClass = enrollClassRepository.EnrollNewClass(userId, classId);
 
+            if (newUserClass == null)
+            {
+                return null;
+            }
+
             var userClass = new UserClassModel
             {
                 ClassId = newUserClass.ClassId,

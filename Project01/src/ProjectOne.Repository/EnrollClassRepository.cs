@@ -24,6 +24,16 @@ namespace ProjectOne.Repository
 
         public UserClassModel EnrollNewClass(int userId, int classId)
         {
+            var dupEnrollClass = DatabaseAccessor
+                .Instance
+                .UserClass
+                .FirstOrDefault(t => t.ClassId == classId);
+
+            if (dupEnrollClass != null)
+            {
+                return null;
+            }
+
             var enrollNewClass = DatabaseAccessor
                 .Instance
                 .Add(new Database.UserClass
