@@ -5,6 +5,7 @@ namespace ProjectOne.Repository
     public interface IEnrollClassRepository
     {
         EnrollClassModel[] EnrollClassList { get; }
+        UserClassModel EnrollNewClass(int userId, int classId);
     }
 
     public class EnrollClassModel
@@ -33,26 +34,22 @@ namespace ProjectOne.Repository
             }
         }
 
-        //public EnrollClassModel EnrollNewClass(int userId, int classId)
-        //{
-        //    //var userFound = DatabaseAccessor.Instance.UserClass
-        //    //.FirstOrDefault(t => t.UserEmail.ToLower() == email.ToLower());
+        public UserClassModel EnrollNewClass(int userId, int classId)
+        {
+            var enrollNewClass = DatabaseAccessor.Instance
+                .Add(new Database.UserClass
+                {
+                    UserId = userId,
+                    ClassId = classId,
+                });
 
-        //    //if (userFound != null)
-        //    //{
-        //    //    return null;
-        //    //}
+            DatabaseAccessor.Instance.SaveChanges();
 
-        //    var enrollNewClass = DatabaseAccessor.Instance.UserClass
-        //            .Add(new Database.UserClass
-        //            {
-        //                UserId = userId,
-        //                ClassId = classId
-        //            });
-
-        //    DatabaseAccessor.Instance.SaveChanges();
-
-        //    return new EnrollClassModel { ClassId = user.Entity.UserId, Name = user.Entity.UserEmail };
-        //}
+            return new UserClassModel
+            {
+                ClassId = enrollNewClass.Entity.ClassId,
+                UserId = enrollNewClass.Entity.UserId,
+            };
+        }
     }
 }
