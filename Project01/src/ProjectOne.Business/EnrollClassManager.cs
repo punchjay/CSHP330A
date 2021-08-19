@@ -6,6 +6,7 @@ namespace ProjectOne.Business
     public interface IEnrollClassManager
     {
         EnrollClassModel[] EnrollClass { get; }
+        EnrollClassModel EnrollClassForm(int userId);
     }
 
     public class EnrollClassModel
@@ -28,7 +29,7 @@ namespace ProjectOne.Business
             get
             {
                 return enrollClassRepository
-                    .ClassList
+                    .EnrollClassList
                     .Select(t => new EnrollClassModel
                     {
                         ClassId = t.ClassId,
@@ -38,7 +39,7 @@ namespace ProjectOne.Business
             }
         }
 
-        public EnrollClassModel EnrollClassForm()
+        public EnrollClassModel EnrollClassForm(int userId)
         {
             return null;
         }
