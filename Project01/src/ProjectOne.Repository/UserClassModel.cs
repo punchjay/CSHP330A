@@ -6,6 +6,7 @@ namespace ProjectOne.Repository
     {
         public int ClassId { get; set; }
         public int UserId { get; set; }
+
         public Class Class { get; set; }
         public User User { get; set; }
     }

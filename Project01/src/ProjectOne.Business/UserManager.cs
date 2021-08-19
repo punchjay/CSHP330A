@@ -20,7 +20,11 @@ namespace ProjectOne.Business
                 return null;
             }
 
-            return new UserModel { Id = user.Id, Name = user.Name };
+            return new UserModel
+            {
+                Id = user.Id,
+                Name = user.Name
+            };
         }
 
         public UserModel Register(string email, string password)
@@ -32,7 +36,11 @@ namespace ProjectOne.Business
                 return null;
             }
 
-            return new UserModel { Id = user.Id, Name = user.Name };
+            return new UserModel
+            {
+                Id = user.Id,
+                Name = user.Name
+            };
         }
     }
 }
