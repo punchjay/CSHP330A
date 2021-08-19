@@ -1,10 +1,12 @@
-﻿namespace ProjectOne.Business
+﻿using ProjectOne.Database;
+
+namespace ProjectOne.Business
 {
     public class UserClassModel
     {
         public int ClassId { get; set; }
-        public string ClassName { get; set; }
-        public string ClassDescription { get; set; }
-        public decimal ClassPrice { get; set; }
+        public int UserId { get; set; }
+        public Class Class { get; set; }
+        public User User { get; set; }
     }
 }

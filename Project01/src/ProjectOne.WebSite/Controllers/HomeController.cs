@@ -87,13 +87,15 @@ namespace ProjectOne.WebSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult EnrollClassForm(Models.UserClassModel enrollClassModel)
+        public ActionResult EnrollClassForm(Models.UserClassModel userClassModel)
         {
             if (ModelState.IsValid)
             {
                 var userJson = HttpContext.Session.GetString("User");
                 var user = JsonConvert.DeserializeObject<Models.UserModel>(userJson);
-                var addClass = enrollClassManager.EnrollClassForm(user.Id, enrollClassModel.ClassId);
+
+                var addUserClass = enrollClassManager.EnrollClassForm(user.Id, userClassModel.ClassId);
+
                 return Redirect("StudentClass");
             }
             else

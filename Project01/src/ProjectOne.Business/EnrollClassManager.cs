@@ -41,8 +41,13 @@ namespace ProjectOne.Business
 
         public UserClassModel EnrollClassForm(int userId, int classId)
         {
-            var newClass = enrollClassRepository.EnrollNewClass(userId, classId);
-            return null;
+            var newUserClass = enrollClassRepository.EnrollNewClass(userId, classId);
+
+            return new UserClassModel
+            {
+                ClassId = newUserClass.ClassId,
+                UserId = newUserClass.UserId,
+            };
         }
     }
 }
