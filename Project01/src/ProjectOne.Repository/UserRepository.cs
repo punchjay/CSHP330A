@@ -24,7 +24,7 @@ namespace ProjectOne.Repository
             };
         }
 
-        public UserModel RegisterUser(string email, string password)
+        public UserModel Register(string email, string password)
         {
             var userFound = DatabaseAccessor
                 .Instance

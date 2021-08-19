@@ -96,7 +96,15 @@ namespace ProjectOne.WebSite.Controllers
 
                 var addUserClass = enrollClassManager.EnrollClassForm(user.Id, userClassModel.ClassId);
 
-                return Redirect("StudentClass");
+                if (addUserClass == null)
+                {
+                    ModelState.AddModelError("msg", "You are already enrolled in this class.");
+                    return View("EnrollClass");
+                }
+                else
+                {
+                    return Redirect("StudentClass");
+                }
             }
             else
             {
@@ -191,11 +199,11 @@ namespace ProjectOne.WebSite.Controllers
         public ActionResult Register() => View();
 
         [HttpPost]
-        public ActionResult RegisterForm(Models.RegisterModel registerModel)
+        public ActionResult Register(Models.RegisterModel registerModel)
         {
             if (ModelState.IsValid)
             {
-                var newUser = userManager.RegisterForm(registerModel.UserName, registerModel.Password);
+                var newUser = userManager.Register(registerModel.UserName, registerModel.Password);
 
                 if (newUser == null)
                 {
