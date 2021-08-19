@@ -15,14 +15,14 @@ namespace ProjectOne.Business
             this.classListRepository = classListRepository;
         }
 
-        public UserClassModel[] GetUser(int userId)
+        public ClassListModel[] GetUser(int userId)
         {
             var studentClass = studentClassRepository.GetUser(userId)
                 .Select(t =>
                 {
                     var classList = classListRepository.GetClassList(t.ClassId);
 
-                    return new UserClassModel
+                    return new ClassListModel
                     {
                         ClassId = t.ClassId,
                         ClassName = classList.ClassName,

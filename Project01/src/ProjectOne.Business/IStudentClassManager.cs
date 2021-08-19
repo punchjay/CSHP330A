@@ -2,6 +2,6 @@
 {
     public interface IStudentClassManager
     {
-        UserClassModel[] GetUser(int userId);
+        ClassListModel[] GetUser(int userId);
     }
 }
