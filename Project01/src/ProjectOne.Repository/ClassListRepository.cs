@@ -23,23 +23,5 @@ namespace ProjectOne.Repository
                 return classList;
             }
         }
-
-        public ClassListModel GetClassList(int classId)
-        {
-            var classById = DatabaseAccessor
-                .Instance
-                .Class
-                .First(t => t.ClassId == classId);
-
-            var classList = new ClassListModel
-            {
-                ClassId = classById.ClassId,
-                ClassDescription = classById.ClassDescription,
-                ClassName = classById.ClassName,
-                ClassPrice = classById.ClassPrice,
-            };
-
-            return classList;
-        }
     }
 }
