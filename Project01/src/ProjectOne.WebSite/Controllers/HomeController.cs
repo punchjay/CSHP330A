@@ -87,7 +87,7 @@ namespace ProjectOne.WebSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult EnrollClassForm(Models.UserClassModel userClassModel)
+        public ActionResult EnrollClassForm(Models.UserClassModel userClassModel, Models.EnrollClassModel enrollClassModel)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,16 @@ namespace ProjectOne.WebSite.Controllers
                 if (addUserClass == null)
                 {
                     ModelState.AddModelError("msg", "You are already enrolled in this class.");
-                    return View("EnrollClass");
+                    var enrollClassList = enrollClassManager
+                        .EnrollClass
+                        .Select(t => new Models.EnrollClassModel
+                        {
+                            ClassId = t.ClassId,
+                            ClassName = t.ClassName,
+                        })
+                        .ToArray();
+
+                    return View("EnrollClass", enrollClassList);
                 }
                 else
                 {

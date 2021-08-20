@@ -27,7 +27,7 @@ namespace ProjectOne.Repository
             var dupEnrollClass = DatabaseAccessor
                 .Instance
                 .UserClass
-                .FirstOrDefault(t => t.ClassId == classId && t.UserId ==userId);
+                .FirstOrDefault(t => t.UserId == userId && t.ClassId == classId);
 
             if (dupEnrollClass != null)
             {
