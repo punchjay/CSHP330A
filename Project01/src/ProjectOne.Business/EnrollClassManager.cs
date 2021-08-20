@@ -12,7 +12,7 @@ namespace ProjectOne.Business
             this.enrollClassRepository = enrollClassRepository;
         }
 
-        public EnrollClassModel[] EnrollClass
+        public EnrollClassModel[] EnrolledClass
         {
             get
             {
@@ -29,7 +29,7 @@ namespace ProjectOne.Business
             }
         }
 
-        public UserClassModel EnrollClassForm(int userId, int classId)
+        public UserClassModel EnrollClass(int userId, int classId)
         {
             var newUserClass = enrollClassRepository.EnrollNewClass(userId, classId);
 

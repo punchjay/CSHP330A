@@ -75,7 +75,7 @@ namespace ProjectOne.WebSite.Controllers
         public ActionResult EnrollClass()
         {
             var enrollClassList = enrollClassManager
-                .EnrollClass
+                .EnrolledClass
                 .Select(t => new Models.EnrollClassModel
                 {
                     ClassId = t.ClassId,
@@ -87,20 +87,21 @@ namespace ProjectOne.WebSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult EnrollClassForm(Models.UserClassModel userClassModel, Models.EnrollClassModel enrollClassModel)
+        public ActionResult EnrollClass(Models.UserClassModel userClassModel)
         {
             if (ModelState.IsValid)
             {
                 var userJson = HttpContext.Session.GetString("User");
                 var user = JsonConvert.DeserializeObject<Models.UserModel>(userJson);
 
-                var addUserClass = enrollClassManager.EnrollClassForm(user.Id, userClassModel.ClassId);
+                var addUserClass = enrollClassManager.EnrollClass(user.Id, userClassModel.ClassId);
 
                 if (addUserClass == null)
                 {
                     ModelState.AddModelError("msg", "You are already enrolled in this class.");
+
                     var enrollClassList = enrollClassManager
-                        .EnrollClass
+                        .EnrolledClass
                         .Select(t => new Models.EnrollClassModel
                         {
                             ClassId = t.ClassId,
@@ -108,7 +109,7 @@ namespace ProjectOne.WebSite.Controllers
                         })
                         .ToArray();
 
-                    return View("EnrollClass", enrollClassList);
+                    return View(enrollClassList);
                 }
                 else
                 {
