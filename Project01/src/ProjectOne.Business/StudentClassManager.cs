@@ -6,13 +6,13 @@ namespace ProjectOne.Business
     public class StudentClassManager : IStudentClassManager
     {
         private readonly IStudentClassRepository studentClassRepository;
-        private readonly IClassListRepository classListRepository;
+        //private readonly IClassListRepository classListRepository;
 
         public StudentClassManager(IStudentClassRepository studentClassRepository,
             IClassListRepository classListRepository)
         {
             this.studentClassRepository = studentClassRepository;
-            this.classListRepository = classListRepository;
+            //this.classListRepository = classListRepository;
         }
 
         public ClassListModel[] GetUser(int userId)
@@ -20,14 +20,14 @@ namespace ProjectOne.Business
             var studentClass = studentClassRepository.GetUser(userId)
                 .Select(t =>
                 {
-                    var classList = classListRepository.GetClassList(t.ClassId);
+                    //var classList = classListRepository.GetClassList(t.ClassId);
 
                     return new ClassListModel
                     {
                         ClassId = t.ClassId,
-                        ClassName = classList.ClassName,
-                        ClassDescription = classList.ClassDescription,
-                        ClassPrice = classList.ClassPrice,
+                        ClassName = t.Class.ClassName,
+                        ClassDescription = t.Class.ClassDescription,
+                        ClassPrice = t.Class.ClassPrice,
                     };
                 })
                 .ToArray();
