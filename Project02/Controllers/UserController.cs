@@ -9,16 +9,17 @@ namespace ProjectTwo.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private static readonly List<User> Users = new List<User>();
+        private static List<User> Users = new List<User>();
         private static int currentId = 101;
 
+        // GET api/<UserController>
         [HttpGet]
-        public IEnumerable<User> Get()
+        public ActionResult<IEnumerable<User>> Get()
         {
             return Users;
         }
 
-        // GET api/<UserController>/5 ****GET {guid} to get a single user
+        // GET {guid} to get a single user
         [HttpGet("{id}")]
         public User Get(int id)
         {
@@ -27,7 +28,7 @@ namespace ProjectTwo.Controllers
             return user;
         }
 
-        // POST api/<UserController> ****POST to add a user
+        // POST to add a user
         [HttpPost]
         public IActionResult Post([FromBody] User value)
         {
@@ -35,21 +36,29 @@ namespace ProjectTwo.Controllers
             {
                 return new BadRequestResult();
             }
+
+            value.Id = currentId;
             Users.Add(value);
 
             return null;
         }
 
-        // PUT api/<UserController>/5 ****PUT {guid} to update a user
+        // PUT {guid} to update a user
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] User value)
         {
+            var user = Users.FirstOrDefault(u => u.Id == id);
+
+            user = value;
         }
 
-        // DELETE api/<UserController>/5 ****DELETE {guid} to delete a single user
+        // DELETE {guid} to delete a single user
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var user = Users.RemoveAll(u => u.Id == id);
+
+            return Ok();
         }
     }
 }
