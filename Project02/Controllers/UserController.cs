@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectTwo.Models;
 using System.Collections.Generic;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System.Linq;
 
 namespace ProjectTwo.Controllers
 {
@@ -9,33 +9,44 @@ namespace ProjectTwo.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        // GET: api/<UserController>
+        private static readonly List<User> Users = new List<User>();
+        private static int currentId = 101;
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<User> Get()
         {
-            return new string[] { "value1", "value2" };
+            return Users;
         }
 
-        // GET api/<UserController>/5
+        // GET api/<UserController>/5 ****GET {guid} to get a single user
         [HttpGet("{id}")]
-        public string Get(int id)
+        public User Get(int id)
         {
-            return "value";
+            var user = Users.FirstOrDefault(u => u.Id == id);
+
+            return user;
         }
 
-        // POST api/<UserController>
+        // POST api/<UserController> ****POST to add a user
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] User value)
         {
+            if (value == null)
+            {
+                return new BadRequestResult();
+            }
+            Users.Add(value);
+
+            return null;
         }
 
-        // PUT api/<UserController>/5
+        // PUT api/<UserController>/5 ****PUT {guid} to update a user
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] User value)
         {
         }
 
-        // DELETE api/<UserController>/5
+        // DELETE api/<UserController>/5 ****DELETE {guid} to delete a single user
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
