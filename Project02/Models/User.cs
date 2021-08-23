@@ -14,7 +14,7 @@ namespace ProjectTwo.Models
         [JsonProperty("Password")]
         public string Password { get; set; }
 
-        [JsonProperty("Date")]
-        public DateTime Date { get; set; }
+        [JsonProperty("DateCreated")]
+        public DateTime DateCreated { get; set; }
     }
 }

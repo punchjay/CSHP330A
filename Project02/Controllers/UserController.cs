@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjectTwo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -37,7 +38,8 @@ namespace ProjectTwo.Controllers
                 return new BadRequestResult();
             }
 
-            value.Id = currentId;
+            value.Id = currentId++;
+            value.DateCreated = DateTime.UtcNow;
             Users.Add(value);
 
             return null;
@@ -45,11 +47,14 @@ namespace ProjectTwo.Controllers
 
         // PUT {guid} to update a user
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] User value)
+        public IActionResult Put(int id, [FromBody] User value)
         {
             var user = Users.FirstOrDefault(u => u.Id == id);
 
-            user = value;
+            user.Email = value.Email;
+            user.Password = value.Password;
+
+            return Ok(user);
         }
 
         // DELETE {guid} to delete a single user
