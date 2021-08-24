@@ -38,11 +38,16 @@ namespace ProjectTwo.Controllers
                 return new BadRequestResult();
             }
 
+            if (value == null)
+            {
+                return new BadRequestResult();
+            }
+
             value.Id = currentId++;
             value.DateCreated = DateTime.UtcNow;
             Users.Add(value);
 
-            return null;
+            return CreatedAtAction(nameof(Get), new { id = value.Id }, value);
         }
 
         // PUT {guid} to update a user
