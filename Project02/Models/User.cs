@@ -6,7 +6,7 @@ namespace ProjectTwo.Models
     public class User
     {
         [JsonProperty("Id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonProperty("Email")]
         public string Email { get; set; }

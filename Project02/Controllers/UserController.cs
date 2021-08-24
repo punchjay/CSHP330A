@@ -10,8 +10,8 @@ namespace ProjectTwo.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private static List<User> Users = new List<User>();
-        private static int currentId = 101;
+        private static readonly List<User> Users = new List<User>();
+        private Guid guidId = Guid.NewGuid();
 
         // GET api/<UserController>
         [HttpGet]
@@ -22,7 +22,7 @@ namespace ProjectTwo.Controllers
 
         // GET {guid} to get a single user
         [HttpGet("{id}")]
-        public User Get(int id)
+        public User Get(Guid id)
         {
             var user = Users.FirstOrDefault(u => u.Id == id);
 
@@ -58,7 +58,7 @@ namespace ProjectTwo.Controllers
                 });
             }
 
-            value.Id = currentId++;
+            value.Id = guidId;
             value.DateCreated = DateTime.UtcNow;
             Users.Add(value);
 
@@ -67,7 +67,7 @@ namespace ProjectTwo.Controllers
 
         // PUT {guid} to update a user
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] User value)
+        public IActionResult Put(Guid id, [FromBody] User value)
         {
             var user = Users.FirstOrDefault(u => u.Id == id);
 
@@ -84,7 +84,7 @@ namespace ProjectTwo.Controllers
 
         // DELETE {guid} to delete a single user
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             var userDeleted = Users.RemoveAll(u => u.Id == id);
 
