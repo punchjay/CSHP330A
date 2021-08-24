@@ -72,8 +72,10 @@ namespace ProjectTwo.Controllers
             {
                 return NotFound();
             }
-
-            return Ok();
+            else
+            {
+                return Ok();
+            }
         }
     }
 }
