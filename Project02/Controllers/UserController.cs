@@ -86,9 +86,9 @@ namespace ProjectTwo.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            var userDeleted = Users.RemoveAll(u => u.Id == id);
+            var userDelete = Users.RemoveAll(u => u.Id == id);
 
-            if (userDeleted == 0)
+            if (userDelete == 0)
             {
                 return NotFound();
             }
