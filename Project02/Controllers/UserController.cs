@@ -40,19 +40,21 @@ namespace ProjectTwo.Controllers
 
             if (value.Email == null)
             {
-                return BadRequest(new ErrorResponse { 
-                    Message = "Email field is null", 
-                    DBCode = 120, 
-                    Data = value 
+                return BadRequest(new ErrorResponse
+                {
+                    Message = "Email field is null",
+                    DBCode = 120,
+                    Data = value
                 });
             }
 
             if (value.Password == null)
             {
-                return BadRequest(new ErrorResponse { 
-                    Message = "Password field is null", 
-                    DBCode = 120, 
-                    Data = value 
+                return BadRequest(new ErrorResponse
+                {
+                    Message = "Password field is null",
+                    DBCode = 120,
+                    Data = value
                 });
             }
 
