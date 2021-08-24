@@ -43,7 +43,7 @@ namespace ProjectTwo.Controllers
                 return BadRequest(new ErrorResponse
                 {
                     Message = "Email field is null",
-                    DBCode = 120,
+                    DBCode = 9000,
                     Data = value
                 });
             }
@@ -53,7 +53,7 @@ namespace ProjectTwo.Controllers
                 return BadRequest(new ErrorResponse
                 {
                     Message = "Password field is null",
-                    DBCode = 120,
+                    DBCode = 9000,
                     Data = value
                 });
             }
