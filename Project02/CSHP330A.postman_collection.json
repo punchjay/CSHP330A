@@ -59,7 +59,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Email\" : \"new-user@uw.org\",\r\n    \"Password\": \"jerkStore\"\r\n}",
+							"raw": "{\r\n    \"Email\" : \"new-user@uw.org\",\r\n    \"Password\": \"password\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
