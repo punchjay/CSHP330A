@@ -38,9 +38,22 @@ namespace ProjectTwo.Controllers
                 return new BadRequestResult();
             }
 
-            if (value == null)
+            if (value.Email == null)
             {
-                return new BadRequestResult();
+                return BadRequest(new ErrorResponse { 
+                    Message = "Email field is null", 
+                    DBCode = 120, 
+                    Data = value 
+                });
+            }
+
+            if (value.Password == null)
+            {
+                return BadRequest(new ErrorResponse { 
+                    Message = "Password field is null", 
+                    DBCode = 120, 
+                    Data = value 
+                });
             }
 
             value.Id = currentId++;
@@ -55,6 +68,11 @@ namespace ProjectTwo.Controllers
         public IActionResult Put(int id, [FromBody] User value)
         {
             var user = Users.FirstOrDefault(u => u.Id == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
 
             user.Email = value.Email;
             user.Password = value.Password;
