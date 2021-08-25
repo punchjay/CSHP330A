@@ -168,12 +168,12 @@ namespace ProjectOne.WebSite.Controllers
                         // Refreshing the authentication session should be allowed.
 
                         ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
-                        // The time at which the authentication ticket expires. A 
-                        // value set here overrides the ExpireTimeSpan option of 
+                        // The time at which the authentication ticket expires. A
+                        // value set here overrides the ExpireTimeSpan option of
                         // CookieAuthenticationOptions set with AddCookie.
 
                         IsPersistent = false,
-                        // Whether the authentication session is persisted across 
+                        // Whether the authentication session is persisted across
                         // multiple requests. When used with cookies, controls
                         // whether the cookie's lifetime is absolute (matching the
                         // lifetime of the authentication ticket) or session-based.
