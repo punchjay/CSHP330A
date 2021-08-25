@@ -2,7 +2,7 @@
 
 namespace ProjectOne.Repository
 {
-    class DatabaseAccessor
+    internal class DatabaseAccessor
     {
         static DatabaseAccessor()
         {
