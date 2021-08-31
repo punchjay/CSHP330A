@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using ProjectTwo.Models;
 
 namespace ProjectTwoClient
 {
@@ -16,6 +19,8 @@ namespace ProjectTwoClient
             var json = result.Content.ReadAsStringAsync().Result;
 
             Console.WriteLine(json);
+
+            var list = JsonConvert.DeserializeObject<List<User>>(json);
             Console.ReadLine();
         }
     }
