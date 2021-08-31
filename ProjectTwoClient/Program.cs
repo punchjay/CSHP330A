@@ -27,11 +27,11 @@ namespace ProjectTwoClient
             var postResult = client.PostAsync("user", postContent).Result;
             if (postResult.StatusCode == HttpStatusCode.Created)
             {
-                Console.WriteLine(postResult.StatusCode);
+                Console.WriteLine($"StatusCode: {postResult.StatusCode}");
             }
             else
             {
-                Console.WriteLine($"{postResult.StatusCode} - PostAsync Failure.");
+                Console.WriteLine($"StatusCode: {postResult.StatusCode} - PostAsync Failure.");
             }
 
             var result = client.GetAsync("user").Result;
@@ -41,14 +41,14 @@ namespace ProjectTwoClient
 
             var list = JsonConvert.DeserializeObject<List<User>>(json);
             var idToDelete = list[0].Id;
-            var deleteResult = client.DeleteAsync("contacts/" + idToDelete).Result;
-            if (deleteResult.StatusCode == HttpStatusCode.NotFound)
+            var deleteResult = client.DeleteAsync("user/" + idToDelete).Result;
+            if (deleteResult.StatusCode == HttpStatusCode.OK)
             {
-                Console.WriteLine($"{deleteResult.StatusCode} - User '{idToDelete}' Deleted");
+                Console.WriteLine($"StatusCode: {deleteResult.StatusCode} - User '{idToDelete}' Deleted");
             }
             else
             {
-                Console.WriteLine($"{deleteResult.StatusCode} - DeleteAsync Failure.");
+                Console.WriteLine($"StatusCode: {deleteResult.StatusCode} - DeleteAsync Failure.");
             }
 
             Console.ReadLine();
