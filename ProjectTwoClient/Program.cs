@@ -37,8 +37,20 @@ namespace ProjectTwoClient
             var result = client.GetAsync("user").Result;
             var json = result.Content.ReadAsStringAsync().Result;
             Console.WriteLine(json);
+            Console.WriteLine();
 
             var list = JsonConvert.DeserializeObject<List<User>>(json);
+            var idToDelete = list[0].Id;
+            var deleteResult = client.DeleteAsync("contacts/" + idToDelete).Result;
+            if (deleteResult.StatusCode == HttpStatusCode.NotFound)
+            {
+                Console.WriteLine($"{deleteResult.StatusCode} - User '{idToDelete}' Deleted");
+            }
+            else
+            {
+                Console.WriteLine($"{deleteResult.StatusCode} - DeleteAsync Failure.");
+            }
+
             Console.ReadLine();
         }
     }
