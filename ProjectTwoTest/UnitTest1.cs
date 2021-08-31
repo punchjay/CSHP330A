@@ -4,6 +4,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using FluentAssertions;
 
 namespace ProjectTwoTest
 {
@@ -34,6 +35,13 @@ namespace ProjectTwoTest
             {
                 BaseAddress = new Uri("http://localhost:9628/api/")
             };
+        }
+
+        [Test]
+        public void TestGetAll()
+        {
+            var result = client.GetAsync("user").Result;
+            result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
         [Test]
