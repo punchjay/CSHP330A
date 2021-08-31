@@ -12,6 +12,7 @@ namespace ProjectTwoTest
     public class UserTests
     {
         private HttpClient client;
+        private Guid guidId = Guid.NewGuid();
 
         [SetUp]
         public void Setup()
@@ -54,7 +55,7 @@ namespace ProjectTwoTest
         [Test]
         public void DeleteUserById_NotFound()
         {
-            var result = client.DeleteAsync("user/f4ffc21a-0a1d-4657-b91f-0e5ab011d929").Result;
+            var result = client.DeleteAsync($"user/{guidId}").Result;
             result.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
 
@@ -85,7 +86,7 @@ namespace ProjectTwoTest
         [Test]
         public void GetUserById_NoContent()
         {
-            var result = client.GetAsync("user/f4ffc21a-0a1d-4657-b91f-0e5ab011d929").Result;
+            var result = client.GetAsync($"user/{guidId}").Result;
             result.StatusCode.Should().Be(HttpStatusCode.NoContent);
         }
 
