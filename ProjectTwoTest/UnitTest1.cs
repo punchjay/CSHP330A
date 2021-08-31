@@ -1,29 +1,15 @@
+using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using ProjectTwoTest.Models;
 using System;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using FluentAssertions;
 
 namespace ProjectTwoTest
 {
-    public class User
-    {
-        [JsonProperty("Id")]
-        public Guid Id { get; set; }
-
-        [JsonProperty("Email")]
-        public string Email { get; set; }
-
-        [JsonProperty("Password")]
-        public string Password { get; set; }
-
-        [JsonProperty("DateCreated")]
-        public DateTime DateCreated { get; set; }
-    }
-
-    public class Tests
+    public class UserTests
     {
         private HttpClient client;
 
@@ -38,14 +24,14 @@ namespace ProjectTwoTest
         }
 
         [Test]
-        public void TestGetAll()
+        public void GetAllUsers()
         {
             var result = client.GetAsync("user").Result;
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
         [Test]
-        public void AddNewContact()
+        public void AddNewUser()
         {
             var newUser = new User
             {
