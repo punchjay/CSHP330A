@@ -23,6 +23,21 @@ namespace ProjectTwoTest
             };
         }
 
+        private HttpResponseMessage CreateUser(string email, string password)
+        {
+            var newUser = new User
+            {
+                Email = email,
+                Password = password,
+            };
+
+            var newJson = JsonConvert.SerializeObject(newUser);
+            var postContent = new StringContent(newJson, Encoding.UTF8, "application/json");
+            var postResult = client.PostAsync("user", postContent).Result;
+
+            return postResult;
+        }
+
         [Test]
         public void GetAllUsers()
         {
@@ -33,17 +48,9 @@ namespace ProjectTwoTest
         [Test]
         public void AddNewUser()
         {
-            var newUser = new User
-            {
-                Email = "new-client@uw.org",
-                Password = "clientPassword",
-            };
-
-            var newJson = JsonConvert.SerializeObject(newUser);
-            var postContent = new StringContent(newJson, Encoding.UTF8, "application/json");
-            var postResult = client.PostAsync("user", postContent).Result;
-
-            Assert.AreEqual(HttpStatusCode.Created, postResult.StatusCode);
+            var postResult = CreateUser("new-client@uw.org", "clientPassword");
+            //Assert.AreEqual(HttpStatusCode.Created, postResult.StatusCode);
+            postResult.StatusCode.Should().Be(HttpStatusCode.Created);
         }
     }
 }
