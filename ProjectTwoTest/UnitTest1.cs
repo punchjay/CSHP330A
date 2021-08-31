@@ -46,9 +46,7 @@ namespace ProjectTwoTest
             };
 
             var newJson = JsonConvert.SerializeObject(newUser);
-
             var postContent = new StringContent(newJson, Encoding.UTF8, "application/json");
-
             var postResult = client.PostAsync("user", postContent).Result;
 
             Assert.AreEqual(HttpStatusCode.Created, postResult.StatusCode);
