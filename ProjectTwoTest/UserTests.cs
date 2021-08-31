@@ -47,8 +47,15 @@ namespace ProjectTwoTest
         [Test]
         public void DeleteUserById_BadRequest()
         {
-            var result = client.DeleteAsync("user/invalidGuid").Result;
+            var result = client.DeleteAsync("user/BadGuid").Result;
             result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [Test]
+        public void DeleteUserById_NotFound()
+        {
+            var result = client.DeleteAsync("user/f4ffc21a-0a1d-4657-b91f-0e5ab011d929").Result;
+            result.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
 
         [Test]
@@ -71,8 +78,15 @@ namespace ProjectTwoTest
         [Test]
         public void GetUserById_BadRequest()
         {
-            var result = client.GetAsync("user/invalidGuid").Result;
+            var result = client.GetAsync("user/BadGuid").Result;
             result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [Test]
+        public void GetUserById_NoContent()
+        {
+            var result = client.GetAsync("user/f4ffc21a-0a1d-4657-b91f-0e5ab011d929").Result;
+            result.StatusCode.Should().Be(HttpStatusCode.NoContent);
         }
 
         [Test]
