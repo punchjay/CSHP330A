@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
+using ProjectTwoClient.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using ProjectTwo.Models;
 
 namespace ProjectTwoClient
 {
