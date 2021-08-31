@@ -24,7 +24,7 @@ namespace ProjectTwoTest
 
     public class Tests
     {
-        HttpClient client;
+        private HttpClient client;
 
         // Called before every Test
         [SetUp]
