@@ -13,7 +13,6 @@ namespace ProjectTwoTest
     {
         private HttpClient client;
 
-        // Called before every Test
         [SetUp]
         public void Setup()
         {
@@ -39,18 +38,17 @@ namespace ProjectTwoTest
         }
 
         [Test]
-        public void GetAllUsers()
-        {
-            var result = client.GetAsync("user").Result;
-            result.StatusCode.Should().Be(HttpStatusCode.OK);
-        }
-
-        [Test]
         public void AddNewUser()
         {
             var postResult = CreateUser("AddNewUser.org", "AddNewUser");
-            Assert.AreEqual(HttpStatusCode.Created, postResult.StatusCode);
             postResult.StatusCode.Should().Be(HttpStatusCode.Created);
+        }
+
+        [Test]
+        public void DeleteUserById_BadRequest()
+        {
+            var result = client.DeleteAsync("user/invalidGuid").Result;
+            result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
         [Test]
@@ -64,9 +62,16 @@ namespace ProjectTwoTest
         }
 
         [Test]
-        public void DeleteUserById_BadRequest()
+        public void GetAllUsers()
         {
-            var result = client.DeleteAsync("user/invalidGuid").Result;
+            var result = client.GetAsync("user").Result;
+            result.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Test]
+        public void GetUserById_BadRequest()
+        {
+            var result = client.GetAsync("user/invalidGuid").Result;
             result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
@@ -78,13 +83,6 @@ namespace ProjectTwoTest
             var user = JsonConvert.DeserializeObject<User>(json);
             var result = client.GetAsync("user/" + user.Id).Result;
             result.StatusCode.Should().Be(HttpStatusCode.OK);
-        }
-
-        [Test]
-        public void GetUserById_BadRequest()
-        {
-            var result = client.GetAsync("user/invalidGuid").Result;
-            result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
     }
 }
