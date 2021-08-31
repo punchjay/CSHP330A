@@ -48,57 +48,43 @@ namespace ProjectTwoTest
         [Test]
         public void AddNewUser()
         {
-            var postResult = CreateUser("new-client@uw.org", "clientPassword");
-            //Assert.AreEqual(HttpStatusCode.Created, postResult.StatusCode);
+            var postResult = CreateUser("AddNewUser.org", "AddNewUser");
+            Assert.AreEqual(HttpStatusCode.Created, postResult.StatusCode);
             postResult.StatusCode.Should().Be(HttpStatusCode.Created);
         }
 
         [Test]
-        public void DeleteUserById_Valid()
+        public void DeleteUserById_OK()
         {
-            var postResult = CreateUser("new-client@uw.org", "clientPassword");
+            var postResult = CreateUser("DeleteUserById_OK@uw.org", "DeleteUserById_OK");
             var json = postResult.Content.ReadAsStringAsync().Result;
             var user = JsonConvert.DeserializeObject<User>(json);
             var result = client.DeleteAsync("user/" + user.Id).Result;
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
-        //[Test]
-        //public void TestDelete_InvalidContactStringId()
-        //{
-        //    var result = client.DeleteAsync("contacts/abc").Result;
+        [Test]
+        public void DeleteUserById_BadRequest()
+        {
+            var result = client.DeleteAsync("user/invalidGuid").Result;
+            result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
 
-        //    result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-        //}
+        [Test]
+        public void GetUserById_OK()
+        {
+            var postResult = CreateUser("GetUserById_OK@uw.org", "GetUserById_OK");
+            var json = postResult.Content.ReadAsStringAsync().Result;
+            var user = JsonConvert.DeserializeObject<User>(json);
+            var result = client.GetAsync("user/" + user.Id).Result;
+            result.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
 
-        //[Test]
-        //public void TestDelete_InvalidContactId()
-        //{
-        //    var result = client.DeleteAsync("contacts/1").Result;
-
-        //    result.StatusCode.Should().Be(HttpStatusCode.NotFound);
-        //}
-
-        //[Test]
-        //public void TestGetSpecific_Good()
-        //{
-        //    var postResult = CreateContact("TestGetSpecific_Good");
-
-        //    var json = postResult.Content.ReadAsStringAsync().Result;
-
-        //    var contact = JsonConvert.DeserializeObject<Contact>(json);
-
-        //    var result = client.GetAsync("contacts/" + contact.Id).Result;
-
-        //    result.StatusCode.Should().Be(HttpStatusCode.OK);
-        //}
-
-        //[Test]
-        //public void TestGetSpecific_Bad()
-        //{
-        //    var result = client.GetAsync("contacts/10211").Result;
-
-        //    result.StatusCode.Should().Be(HttpStatusCode.NotFound);
-        //}
+        [Test]
+        public void GetUserById_BadRequest()
+        {
+            var result = client.GetAsync("user/invalidGuid").Result;
+            result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
     }
 }
