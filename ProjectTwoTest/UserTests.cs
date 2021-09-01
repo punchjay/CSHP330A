@@ -41,7 +41,7 @@ namespace ProjectTwoTest
         [Test]
         public void AddNewUser()
         {
-            var postResult = CreateUser("AddNewUser.org", "AddNewUser");
+            var postResult = CreateUser("AddNewUser@uw.org", "AddNewUser");
             postResult.StatusCode.Should().Be(HttpStatusCode.Created);
         }
 
@@ -66,6 +66,7 @@ namespace ProjectTwoTest
             var json = postResult.Content.ReadAsStringAsync().Result;
             var user = JsonConvert.DeserializeObject<User>(json);
             var result = client.DeleteAsync("user/" + user.Id).Result;
+
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
@@ -73,6 +74,7 @@ namespace ProjectTwoTest
         public void GetAllUsers()
         {
             var result = client.GetAsync("user").Result;
+
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
@@ -80,6 +82,7 @@ namespace ProjectTwoTest
         public void GetUserById_BadRequest()
         {
             var result = client.GetAsync("user/BadGuid").Result;
+
             result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
@@ -87,6 +90,7 @@ namespace ProjectTwoTest
         public void GetUserById_NoContent()
         {
             var result = client.GetAsync($"user/{guidId}").Result;
+
             result.StatusCode.Should().Be(HttpStatusCode.NoContent);
         }
 
@@ -97,6 +101,27 @@ namespace ProjectTwoTest
             var json = postResult.Content.ReadAsStringAsync().Result;
             var user = JsonConvert.DeserializeObject<User>(json);
             var result = client.GetAsync("user/" + user.Id).Result;
+
+            result.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Test]
+        public void PutUserById_OK()
+        {
+            var postResult = CreateUser("AddNewUser@uw.org", "AddNewUser");
+            var json = postResult.Content.ReadAsStringAsync().Result;
+            var user = JsonConvert.DeserializeObject<User>(json);
+
+            var updateUser = new User
+            {
+                Email = "PutUserById_OK@uw.org",
+                Password = "PutUserById_OK",
+            };
+
+            var updateJson = JsonConvert.SerializeObject(updateUser);
+            var postContent = new StringContent(updateJson, Encoding.UTF8, "application/json");
+            var result = client.PutAsync("user/" + user.Id, postContent).Result;
+
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
     }
