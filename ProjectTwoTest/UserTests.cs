@@ -65,7 +65,7 @@ namespace ProjectTwoTest
             var postResult = CreateUser("DeleteUserById_OK@uw.org", "DeleteUserById_OK");
             var json = postResult.Content.ReadAsStringAsync().Result;
             var user = JsonConvert.DeserializeObject<User>(json);
-            var result = client.DeleteAsync("user/" + user.Id).Result;
+            var result = client.DeleteAsync($"user/{user.Id}").Result;
 
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
@@ -87,11 +87,11 @@ namespace ProjectTwoTest
         }
 
         [Test]
-        public void GetUserById_NoContent()
+        public void GetUserById_NotFound()
         {
             var result = client.GetAsync($"user/{guidId}").Result;
 
-            result.StatusCode.Should().Be(HttpStatusCode.NoContent);
+            result.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace ProjectTwoTest
             var postResult = CreateUser("GetUserById_OK@uw.org", "GetUserById_OK");
             var json = postResult.Content.ReadAsStringAsync().Result;
             var user = JsonConvert.DeserializeObject<User>(json);
-            var result = client.GetAsync("user/" + user.Id).Result;
+            var result = client.GetAsync($"user/{user.Id}").Result;
 
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
@@ -120,7 +120,7 @@ namespace ProjectTwoTest
 
             var updateJson = JsonConvert.SerializeObject(updateUser);
             var postContent = new StringContent(updateJson, Encoding.UTF8, "application/json");
-            var result = client.PutAsync("user/" + user.Id, postContent).Result;
+            var result = client.PutAsync($"user/{user.Id}", postContent).Result;
 
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }

@@ -41,7 +41,7 @@ namespace ProjectTwoClient
 
             var list = JsonConvert.DeserializeObject<List<User>>(json);
             var idToDelete = list[0].Id;
-            var deleteResult = client.DeleteAsync("user/" + idToDelete).Result;
+            var deleteResult = client.DeleteAsync($"user/{idToDelete}").Result;
             if (deleteResult.StatusCode == HttpStatusCode.OK)
             {
                 Console.WriteLine($"StatusCode: {deleteResult.StatusCode} - User '{idToDelete}' Deleted");
