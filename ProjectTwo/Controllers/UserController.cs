@@ -22,11 +22,18 @@ namespace ProjectTwo.Controllers
 
         // GET {guid} to get a single user
         [HttpGet("{id}")]
-        public User Get(Guid id)
+        public IActionResult Get(Guid id)
         {
             var user = Users.FirstOrDefault(u => u.Id == id);
 
-            return user;
+            if (user == null)
+            {
+                return new NotFoundResult();
+            }
+            else
+            {
+                return Ok(user);
+            }
         }
 
         // POST to add a user
