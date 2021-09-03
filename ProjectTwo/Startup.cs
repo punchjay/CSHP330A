@@ -31,7 +31,7 @@ namespace ProjectTwo
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseExceptionHandler("/error/500");
             app.UseMvc();
         }
     }
