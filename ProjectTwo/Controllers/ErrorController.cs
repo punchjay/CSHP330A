@@ -7,6 +7,7 @@ namespace HelloWorldService.Controllers
     public class ErrorController : ControllerBase
     {
         [Route("/error/{code}")]
+        [HttpGet]
         public IActionResult Error(int code) => new ObjectResult(new ApiResponse(code));
     }
 }
