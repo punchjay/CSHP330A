@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+using System;
 
 namespace ProjectTwo
 {
@@ -23,7 +25,30 @@ namespace ProjectTwo
                 .AddXmlSerializerFormatters()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "User API",
+                    Description = "REST web service for a User object",
+                    TermsOfService = new Uri("https://example.com/terms"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Edward",
+                        Email = string.Empty,
+                        Url = new Uri("https://tbd"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under LICX",
+                        Url = new Uri("https://example.com/license"),
+                    }
+                });
+
+                //var filePath = Path.Combine(AppContext.BaseDirectory, "HelloWorldService.xml");
+                //c.IncludeXmlComments(filePath, true);
+            });
 
             // This supports the JsonProperty names
             services.AddSwaggerGenNewtonsoftSupport();
