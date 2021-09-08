@@ -7,7 +7,6 @@ namespace ProjectTwo.Controllers
     [ApiController]
     public class TokenController : ControllerBase
     {
-        // This should require SSL
         [HttpPost]
         public dynamic Post([FromBody] TokenRequest tokenRequest)
         {
@@ -15,7 +14,6 @@ namespace ProjectTwo.Controllers
             return new { Token = token };
         }
 
-        // This should require SSL
         [HttpGet]
         public dynamic Get(string userName, string password)
         {
