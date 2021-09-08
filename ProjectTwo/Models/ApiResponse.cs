@@ -21,8 +21,10 @@ namespace HelloWorldService
             {
                 case 404:
                     return "Resource not found";
+
                 case 500:
                     return "An unhandled error occurred";
+
                 default:
                     return null;
             }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectTwo.ActionFilters;
 using ProjectTwo.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace ProjectTwo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authenticator]
     public class UserController : ControllerBase
     {
         private static readonly List<User> Users = new List<User>();
