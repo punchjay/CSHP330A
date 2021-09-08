@@ -16,7 +16,7 @@ namespace ProjectTwo
             var token = new Token
             {
                 UserId = 10,
-                Expires = DateTime.UtcNow.AddMinutes(1),
+                Expires = DateTime.UtcNow.AddMinutes(10),
             };
             var jsonString = JsonConvert.SerializeObject(token);
             var encryptedJsonString = Crypto.EncryptStringAES(jsonString);
