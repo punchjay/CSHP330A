@@ -9,7 +9,7 @@ namespace ProjectTwo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authenticator]
+    //[Authenticator]
     public class UserController : ControllerBase
     {
         private static readonly List<User> Users = new List<User>();
