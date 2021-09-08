@@ -46,7 +46,7 @@ namespace ProjectTwo
                     }
                 });
 
-                //var filePath = Path.Combine(AppContext.BaseDirectory, "HelloWorldService.xml");
+                //var filePath = Path.Combine(AppContext.BaseDirectory, "ProjectTwo.xml");
                 //c.IncludeXmlComments(filePath, true);
             });
 
