@@ -35,14 +35,14 @@ namespace ProjectTwo
                     TermsOfService = new Uri("https://example.com/terms"),
                     Contact = new OpenApiContact
                     {
-                        Name = "Edward",
+                        Name = "punchjay",
                         Email = string.Empty,
-                        Url = new Uri("https://tbd"),
+                        Url = new Uri("https://github.com/punchjay"),
                     },
                     License = new OpenApiLicense
                     {
-                        Name = "Use under LICX",
-                        Url = new Uri("https://example.com/license"),
+                        Name = "Use under MIT License",
+                        Url = new Uri("https://github.com/punchjay/CSHP330A/blob/main/LICENSE"),
                     }
                 });
 
