@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjectTwo.Models;
+using ProjectTwo.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,27 @@ namespace ProjectTwo.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly IUserRepository userRepository;
         private static readonly List<User> Users = new List<User>();
         private Guid guidId = Guid.NewGuid();
+
+        public UserController(IUserRepository userRepository)
+        {
+            this.userRepository = userRepository;
+        }
 
         // GET api/<UserController>
         [HttpGet]
         public ActionResult<IEnumerable<User>> Get()
         {
-            return Users;
+            return Ok(userRepository.Users);
         }
 
         // GET {guid} to get a single user
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            var user = Users.FirstOrDefault(u => u.Id == id);
+            var user = userRepository.Users.FirstOrDefault(u => u.Id == id);
 
             if (user == null)
             {
@@ -67,7 +74,7 @@ namespace ProjectTwo.Controllers
 
             value.Id = guidId;
             value.DateCreated = DateTime.UtcNow;
-            Users.Add(value);
+            userRepository.Users.Add(value);
 
             return CreatedAtAction(nameof(Get), new { id = value.Id }, value);
         }
